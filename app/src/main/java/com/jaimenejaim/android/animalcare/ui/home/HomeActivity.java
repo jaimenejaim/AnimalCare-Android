@@ -1,4 +1,4 @@
-package com.jaimenejaim.android.animalcare.ui;
+package com.jaimenejaim.android.animalcare.ui.home;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
