@@ -9,6 +9,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.jaimenejaim.android.animalcare.R;
 import com.jaimenejaim.android.animalcare.ui.messages.MessagesFragment;
@@ -76,6 +77,16 @@ public class HomeActivity extends AppCompatActivity implements HomeViewImpl {
         adapter.addFrag(new MyAnimalsFragment(), "my_animals");
         adapter.addFrag(new MessagesFragment(), "messages");
         viewPager.setAdapter(adapter);
+    }
+
+    @Override
+    public void initComponents(View view) {
+
+    }
+
+    @Override
+    public void setListeners() {
+
     }
 
     class ViewPagerAdapter extends FragmentPagerAdapter {

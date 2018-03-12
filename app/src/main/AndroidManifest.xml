@@ -28,7 +28,11 @@
         <activity
             android:name=".ui.splash.SplashScreenActivity"
             android:label="@string/title_activity_splash_screen"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ui.new_animal.NewAnimalActivity"
+            android:label="@string/title_activity_new_animal"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

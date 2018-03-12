@@ -43,4 +43,14 @@ public class LogInActivity extends AppCompatActivity implements LogInViewImpl {
     public void logIn(String email, String password) {
         presenter.logIn(email,password);
     }
+
+    @Override
+    public void initComponents(View view) {
+
+    }
+
+    @Override
+    public void setListeners() {
+
+    }
 }

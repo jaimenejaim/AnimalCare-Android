@@ -6,8 +6,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.jaimenejaim.android.animalcare.ui.home.HomeActivity"
     tools:showIn="@layout/activity_home">
 
 
@@ -21,7 +19,7 @@
     <android.support.design.widget.BottomNavigationView
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        app:itemBackground="?attr/colorPrimary"
+        android:background="@color/colorPrimary"
         app:itemIconTint="@color/white"
         app:itemTextColor="@color/white"
         app:menu="@menu/bottom_bar"

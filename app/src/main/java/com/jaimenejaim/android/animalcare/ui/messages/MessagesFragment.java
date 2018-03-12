@@ -25,4 +25,13 @@ public class MessagesFragment extends Fragment implements MessagesViewImpl {
         return inflater.inflate(R.layout.fragment_messages, container, false);
     }
 
+    @Override
+    public void initComponents(View view) {
+
+    }
+
+    @Override
+    public void setListeners() {
+
+    }
 }
