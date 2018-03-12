@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.jaimenejaim.android.animalcare.R;
+import com.jaimenejaim.android.animalcare.ui.home.adapters.HomeViewPagerAdapter;
 import com.jaimenejaim.android.animalcare.ui.messages.MessagesFragment;
 import com.jaimenejaim.android.animalcare.ui.my_animals.MyAnimalsFragment;
 import com.jaimenejaim.android.animalcare.ui.settings.SettingsFragment;
@@ -30,29 +31,21 @@ public class HomeActivity extends AppCompatActivity implements HomeViewImpl {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        viewPager = findViewById(R.id.viewpager);
+        initComponents(findViewById(android.R.id.content));
+        setListeners();
+
         setupViewPager(viewPager);
 
-        bottomNavigationView = findViewById(R.id.bottom_nav);
-        bottomNavigationView.setOnNavigationItemSelectedListener(
-                new BottomNavigationView.OnNavigationItemSelectedListener() {
-                    @Override
-                    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                        switch (item.getItemId()) {
-                            case R.id.bottombaritem_settings:
-                                viewPager.setCurrentItem(0);
-                                return true;
-                            case R.id.bottombaritem_animals:
-                                viewPager.setCurrentItem(1);
-                                return true;
-                            case R.id.bottombaritem_message:
-                                viewPager.setCurrentItem(2);
-                                return true;
+    }
 
-                        }
-                        return false;
-                    }
-                });
+    @Override
+    public void initComponents(View view) {
+        viewPager = view.findViewById(R.id.viewpager);
+        bottomNavigationView = view.findViewById(R.id.bottom_nav);
+    }
+
+    @Override
+    public void setListeners() {
 
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
@@ -66,13 +59,34 @@ public class HomeActivity extends AppCompatActivity implements HomeViewImpl {
             @Override
             public void onPageScrollStateChanged(int state) {}
         });
+
+        bottomNavigationView.setOnNavigationItemSelectedListener(
+            new BottomNavigationView.OnNavigationItemSelectedListener() {
+                @Override
+                public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                    switch (item.getItemId()) {
+                        case R.id.bottombaritem_settings:
+                            viewPager.setCurrentItem(0);
+                            return true;
+                        case R.id.bottombaritem_animals:
+                            viewPager.setCurrentItem(1);
+                            return true;
+                        case R.id.bottombaritem_message:
+                            viewPager.setCurrentItem(2);
+                            return true;
+
+                    }
+                    return false;
+                }
+            }
+        );
+
     }
 
 
 
-
     private void setupViewPager(ViewPager viewPager) {
-        ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
+        HomeViewPagerAdapter adapter = new HomeViewPagerAdapter(getSupportFragmentManager());
         adapter.addFrag(new SettingsFragment(), "settings");
         adapter.addFrag(new MyAnimalsFragment(), "my_animals");
         adapter.addFrag(new MessagesFragment(), "messages");
@@ -80,44 +94,7 @@ public class HomeActivity extends AppCompatActivity implements HomeViewImpl {
     }
 
     @Override
-    public void initComponents(View view) {
-
+    public void onBackPressed() {
+        super.onBackPressed();
     }
-
-    @Override
-    public void setListeners() {
-
-    }
-
-    class ViewPagerAdapter extends FragmentPagerAdapter {
-        private final List<Fragment> mFragmentList = new ArrayList<>();
-        private final List<String> mFragmentTitleList = new ArrayList<>();
-
-        public ViewPagerAdapter(FragmentManager manager) {
-            super(manager);
-        }
-
-        @Override
-        public Fragment getItem(int position) {
-            return mFragmentList.get(position);
-        }
-
-        @Override
-        public int getCount() {
-            return mFragmentList.size();
-        }
-
-        public void addFrag(Fragment fragment, String title) {
-            mFragmentList.add(fragment);
-            mFragmentTitleList.add(title);
-        }
-
-        @Override
-        public CharSequence getPageTitle(int position) {
-
-            // return null to display only the icon
-            return null;
-        }
-    }
-
 }

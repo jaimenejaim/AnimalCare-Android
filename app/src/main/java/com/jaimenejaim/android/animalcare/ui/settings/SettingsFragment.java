@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import com.jaimenejaim.android.animalcare.R;
 
 
-public class SettingsFragment extends Fragment {
+public class SettingsFragment extends Fragment implements SettingsViewImpl {
 
 
     @Override
@@ -22,8 +22,25 @@ public class SettingsFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_settings, container, false);
 
+        initComponents(view);
+        setListeners();
+
         return view;
     }
 
 
+    @Override
+    public void initComponents(View view) {
+
+    }
+
+    @Override
+    public void setListeners() {
+
+    }
+
+    @Override
+    public void onBackPressed() {
+
+    }
 }

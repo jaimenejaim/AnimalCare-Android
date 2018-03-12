@@ -9,4 +9,5 @@ import android.view.View;
 public interface ViewImpl {
     void initComponents(View view);
     void setListeners();
+    void onBackPressed();
 }

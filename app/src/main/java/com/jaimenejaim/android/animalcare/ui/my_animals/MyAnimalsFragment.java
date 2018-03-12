@@ -36,8 +36,8 @@ public class MyAnimalsFragment extends Fragment implements MyAnimalsViewImpl {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_my_animals, container, false);
 
-
-        mRecyclerView = view.findViewById(R.id.recyclerView);
+        initComponents(view);
+        setListeners();
 
         String[] title = {
 
@@ -61,14 +61,8 @@ public class MyAnimalsFragment extends Fragment implements MyAnimalsViewImpl {
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
 
-        buttonAdd = view.findViewById(R.id.buttonAdd);
-        buttonAdd.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), NewAnimalActivity.class);
-                startActivityForResult(intent, REQUEST_CODE_NEW_ANIMAL_ACTIVITY);
-            }
-        });
+
+
 
         return view;
     }
@@ -81,11 +75,23 @@ public class MyAnimalsFragment extends Fragment implements MyAnimalsViewImpl {
 
     @Override
     public void initComponents(View view) {
-
+        mRecyclerView = view.findViewById(R.id.recyclerView);
+        buttonAdd = view.findViewById(R.id.buttonAdd);
     }
 
     @Override
     public void setListeners() {
+        buttonAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), NewAnimalActivity.class);
+                startActivityForResult(intent, REQUEST_CODE_NEW_ANIMAL_ACTIVITY);
+            }
+        });
+    }
+
+    @Override
+    public void onBackPressed() {
 
     }
 }

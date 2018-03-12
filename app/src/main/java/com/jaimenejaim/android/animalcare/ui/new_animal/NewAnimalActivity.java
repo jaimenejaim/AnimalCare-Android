@@ -23,18 +23,18 @@ public class NewAnimalActivity extends AppCompatActivity implements NewAnimalVie
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        initComponents(getCurrentFocus());
+        initComponents(findViewById(android.R.id.content));
         setListeners();
     }
 
     @Override
     public void initComponents(View view) {
 
-        editTextName = findViewById(R.id.editTextName);
-        editTextBreed = findViewById(R.id.editTextBreed);
-        editTextBirthDay = findViewById(R.id.editTextBirthDay);
-        buttonSave = findViewById(R.id.buttonSave);
-        spinnerBreed = findViewById(R.id.spinnerBreed);
+        editTextName = view.findViewById(R.id.editTextName);
+        editTextBreed = view.findViewById(R.id.editTextBreed);
+        editTextBirthDay = view.findViewById(R.id.editTextBirthDay);
+        buttonSave = view.findViewById(R.id.buttonSave);
+        spinnerBreed = view.findViewById(R.id.spinnerBreed);
 
     }
 
@@ -44,9 +44,14 @@ public class NewAnimalActivity extends AppCompatActivity implements NewAnimalVie
         buttonSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                finish();
             }
         });
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
     }
 }

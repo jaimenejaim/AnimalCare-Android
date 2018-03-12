@@ -22,14 +22,23 @@ public class LogInActivity extends AppCompatActivity implements LogInViewImpl {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_log_in);
 
-        buttonLogin = findViewById(R.id.buttonLogin);
-        editTextEmail = findViewById(R.id.editTextEmail);
-        editTextPassword = findViewById(R.id.editTextPassword);
+        initComponents(findViewById(android.R.id.content));
+        setListeners();
 
         presenter = new LogInPresenter(this);
 
+    }
 
+    @Override
+    public void initComponents(View view) {
+        buttonLogin = view.findViewById(R.id.buttonLogin);
+        editTextEmail = view.findViewById(R.id.editTextEmail);
+        editTextPassword = view.findViewById(R.id.editTextPassword);
 
+    }
+
+    @Override
+    public void setListeners() {
         buttonLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -38,19 +47,14 @@ public class LogInActivity extends AppCompatActivity implements LogInViewImpl {
         });
     }
 
-
     @Override
     public void logIn(String email, String password) {
         presenter.logIn(email,password);
     }
 
-    @Override
-    public void initComponents(View view) {
-
-    }
 
     @Override
-    public void setListeners() {
-
+    public void onBackPressed() {
+        super.onBackPressed();
     }
 }
