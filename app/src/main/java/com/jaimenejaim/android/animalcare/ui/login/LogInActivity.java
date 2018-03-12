@@ -10,6 +10,7 @@ import com.jaimenejaim.android.animalcare.R;
 
 public class LogInActivity extends AppCompatActivity implements LogInViewImpl {
 
+
     LogInPresenter presenter;
 
     EditText editTextEmail,editTextPassword;

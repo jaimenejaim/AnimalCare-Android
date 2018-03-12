@@ -5,4 +5,6 @@ package com.jaimenejaim.android.animalcare.ui.login;
  */
 
 public interface LogInPresenterImpl {
+
+    void logIn(String username, String password);
 }

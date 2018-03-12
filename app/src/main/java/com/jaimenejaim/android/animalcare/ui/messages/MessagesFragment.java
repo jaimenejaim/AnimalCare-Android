@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import com.jaimenejaim.android.animalcare.R;
 
 
-public class MessagesFragment extends Fragment {
+public class MessagesFragment extends Fragment implements MessagesViewImpl {
 
 
 
