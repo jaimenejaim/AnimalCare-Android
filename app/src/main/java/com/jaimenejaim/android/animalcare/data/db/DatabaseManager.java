@@ -9,11 +9,11 @@ import android.database.sqlite.SQLiteDatabase;
  * Created by Jaime Nascimento Nejaim on 3/12/2018.
  */
 
-public abstract class Manager {
+public abstract class DatabaseManager {
 
     private SQLiteDatabase db;
 
-    public Manager(Context appContext, Helper tableToOpen) throws NullPointerException {
+    public DatabaseManager(Context appContext, Helper tableToOpen) throws NullPointerException {
         garantConnection(appContext, tableToOpen);
         openTable(tableToOpen);
     }

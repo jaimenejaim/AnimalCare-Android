@@ -6,7 +6,7 @@ import android.content.Context;
  * Created by Jaime Nascimento Nejaim on 3/12/2018.
  */
 
-public class Database extends Manager {
+public class Database extends DatabaseManager {
 
     public Database(Context appContext, Helper tableToOpen) {
         super(appContext, tableToOpen);

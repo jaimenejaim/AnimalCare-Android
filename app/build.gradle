@@ -18,7 +18,7 @@ android {
             buildConfigField 'String', 'URL', '""'
         }
         development {
-            buildConfigField 'String', 'URL', '""'
+            buildConfigField 'String', 'URL', '"http://18.221.168.54"'
         }
     }
 
@@ -49,5 +49,9 @@ dependencies {
     compile 'com.orhanobut:hawk:2.0.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
     compile 'de.hdodenhof:circleimageview:2.2.0'
+
+    compile "android.arch.persistence.room:runtime:1.1.0-alpha3"
+    annotationProcessor "android.arch.persistence.room:compiler:1.1.0-alpha3"
+    compile "android.arch.persistence.room:rxjava2:1.1.0-alpha3"
 
 }
