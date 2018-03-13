@@ -1,5 +1,6 @@
 package com.jaimenejaim.android.animalcare.data.persistence.dao;
 
+import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Query;
 
 import com.jaimenejaim.android.animalcare.data.persistence.entity.AutoSaveEmail;
@@ -12,6 +13,7 @@ import io.reactivex.Maybe;
  * Created by jaimenejaim on 12/03/2018.
  */
 
+@Dao
 public interface AutoSaveEmailDao extends BaseDao<AutoSaveEmail> {
 
     @Query("SELECT * FROM autoSaveEmail")

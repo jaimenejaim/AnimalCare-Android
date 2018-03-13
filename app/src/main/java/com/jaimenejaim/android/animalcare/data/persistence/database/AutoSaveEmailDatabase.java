@@ -5,9 +5,10 @@ import android.arch.persistence.room.Room;
 import android.arch.persistence.room.RoomDatabase;
 import android.content.Context;
 
-import com.jaimenejaim.android.animalcare.data.persistence.LocalCacheManager;
 import com.jaimenejaim.android.animalcare.data.persistence.dao.AutoSaveEmailDao;
 import com.jaimenejaim.android.animalcare.data.persistence.entity.AutoSaveEmail;
+
+import static com.jaimenejaim.android.animalcare.data.persistence.Config.DB_NAME;
 
 /**
  * Created by jaimenejaim on 12/03/2018.
@@ -24,8 +25,8 @@ public abstract class AutoSaveEmailDatabase extends RoomDatabase {
     }
 
     private static AutoSaveEmailDatabase buildDatabaseInstance(Context context) {
-        return Room.databaseBuilder(context, AutoSaveEmailDatabase.class,
-                LocalCacheManager.DB_NAME).allowMainThreadQueries().build();
+        return Room.databaseBuilder(context, AutoSaveEmailDatabase.class, DB_NAME)
+                .allowMainThreadQueries().build();
     }
 
     public void cleanUp(){

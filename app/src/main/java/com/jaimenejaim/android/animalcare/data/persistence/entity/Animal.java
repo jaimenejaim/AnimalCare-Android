@@ -1,6 +1,7 @@
 package com.jaimenejaim.android.animalcare.data.persistence.entity;
 
 import android.arch.persistence.room.ColumnInfo;
+import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
 
 import com.google.gson.annotations.SerializedName;
@@ -13,6 +14,7 @@ import io.reactivex.annotations.NonNull;
  * Created by jaimenejaim on 10/03/2018.
  */
 
+@Entity(tableName = "animal")
 public class Animal {
 
     @NonNull
@@ -38,9 +40,9 @@ public class Animal {
     /*
     * Constructor
     * */
-    public Animal(){
-        this.user = new User();
-    }
+//    public Animal(){
+//        this.user = new User();
+//    }
 
 
     /*
@@ -67,10 +69,10 @@ public class Animal {
         this.photo = photo;
     }
 
-    public User getUser() {
-        return user;
-    }
-    public void setUser(User user) {
-        this.user = user;
-    }
+//    public User getUser() {
+//        return user;
+//    }
+//    public void setUser(User user) {
+//        this.user = user;
+//    }
 }

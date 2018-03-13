@@ -1,18 +1,22 @@
 package com.jaimenejaim.android.animalcare.data.persistence.entity;
 
 import android.arch.persistence.room.ColumnInfo;
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.PrimaryKey;
 
 import com.google.gson.annotations.SerializedName;
 
-import java.util.ArrayList;
-import java.util.List;
+import io.reactivex.annotations.NonNull;
 
 /**
  * Created by jaimenejaim on 10/03/2018.
  */
 
+@Entity(tableName = "user")
 public class User {
 
+    @NonNull
+    @PrimaryKey
     @SerializedName("id")
     @ColumnInfo(name = "id")
     private long id;
@@ -25,16 +29,17 @@ public class User {
     @ColumnInfo(name = "active")
     private boolean active;
 
-    @SerializedName("animals")
-    private List<Animal> animals;
+//    @SerializedName("animals")
+//    @Relation(parentColumn = "id", entityColumn = "id", entity = Animal.class)
+//    private List<Animal> animals;
 
 
     /*
      * Constructor
      * */
-    public User(){
-        this.animals = new ArrayList<>();
-    }
+//    public User(){
+//        this.animals = new ArrayList<>();
+//    }
 
 
     /*
@@ -61,11 +66,11 @@ public class User {
         this.active = active;
     }
 
-    public List<Animal> getAnimals() {
-        return animals;
-    }
-    public void setAnimals(List<Animal> animals) {
-        this.animals = animals;
-    }
+//    public List<Animal> getAnimals() {
+//        return animals;
+//    }
+//    public void setAnimals(List<Animal> animals) {
+//        this.animals = animals;
+//    }
 
 }
