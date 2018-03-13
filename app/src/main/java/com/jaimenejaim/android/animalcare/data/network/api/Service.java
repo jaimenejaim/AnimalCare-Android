@@ -1,7 +1,7 @@
 package com.jaimenejaim.android.animalcare.data.network.api;
 
-import com.jaimenejaim.android.animalcare.data.db.model.Auth;
-import com.jaimenejaim.android.animalcare.data.db.model.User;
+import com.jaimenejaim.android.animalcare.data.persistence.entity.Auth;
+import com.jaimenejaim.android.animalcare.data.persistence.entity.User;
 
 import io.reactivex.Observable;
 import retrofit2.http.Field;
@@ -17,7 +17,7 @@ public interface Service {
 
     /*
     * Method to log in to the API
-    * return @params: access_token,token_type, bearer, expired_at and refresh_expired_at on status 200
+    * return @params: access_token,token_type, bearer, expired_at and refresh_expired_at when status code is 200
     * */
     @FormUrlEncoded
     @POST("/auth/login")

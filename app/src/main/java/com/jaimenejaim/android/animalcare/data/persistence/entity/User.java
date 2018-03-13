@@ -1,4 +1,6 @@
-package com.jaimenejaim.android.animalcare.data.db.model;
+package com.jaimenejaim.android.animalcare.data.persistence.entity;
+
+import android.arch.persistence.room.ColumnInfo;
 
 import com.google.gson.annotations.SerializedName;
 
@@ -12,12 +14,15 @@ import java.util.List;
 public class User {
 
     @SerializedName("id")
+    @ColumnInfo(name = "id")
     private long id;
 
     @SerializedName("username")
+    @ColumnInfo(name = "username")
     private String username;
 
     @SerializedName("active")
+    @ColumnInfo(name = "active")
     private boolean active;
 
     @SerializedName("animals")

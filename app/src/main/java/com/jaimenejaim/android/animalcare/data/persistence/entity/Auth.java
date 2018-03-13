@@ -1,4 +1,4 @@
-package com.jaimenejaim.android.animalcare.data.db.model;
+package com.jaimenejaim.android.animalcare.data.persistence.entity;
 
 import com.google.gson.annotations.SerializedName;
 

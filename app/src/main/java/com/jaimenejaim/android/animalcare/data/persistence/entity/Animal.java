@@ -1,8 +1,13 @@
-package com.jaimenejaim.android.animalcare.data.db.model;
+package com.jaimenejaim.android.animalcare.data.persistence.entity;
+
+import android.arch.persistence.room.ColumnInfo;
+import android.arch.persistence.room.PrimaryKey;
 
 import com.google.gson.annotations.SerializedName;
 
 import java.util.Date;
+
+import io.reactivex.annotations.NonNull;
 
 /**
  * Created by jaimenejaim on 10/03/2018.
@@ -10,14 +15,22 @@ import java.util.Date;
 
 public class Animal {
 
+    @NonNull
+    @PrimaryKey
+    @ColumnInfo(name = "id")
     @SerializedName("id")
     private long id;
 
+
+    @ColumnInfo(name = "created_at")
     @SerializedName("created_at")
     private Date created_at;
 
+
+    @ColumnInfo(name = "photo")
     @SerializedName("photo")
     private String photo;
+
 
     @SerializedName("user")
     private User user;

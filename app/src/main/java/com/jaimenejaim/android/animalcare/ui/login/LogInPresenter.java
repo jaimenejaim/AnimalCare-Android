@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 
-import com.jaimenejaim.android.animalcare.data.db.model.Auth;
+import com.jaimenejaim.android.animalcare.data.persistence.entity.Auth;
 import com.jaimenejaim.android.animalcare.data.network.api.Network;
 import com.jaimenejaim.android.animalcare.data.network.api.Service;
 import com.jaimenejaim.android.animalcare.ui.home.HomeActivity;

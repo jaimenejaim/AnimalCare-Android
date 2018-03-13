@@ -2,7 +2,7 @@ package com.jaimenejaim.android.animalcare.data.pref;
 
 import android.content.Context;
 
-import com.jaimenejaim.android.animalcare.data.db.model.Auth;
+import com.jaimenejaim.android.animalcare.data.persistence.entity.Auth;
 import com.orhanobut.hawk.Hawk;
 
 /**
