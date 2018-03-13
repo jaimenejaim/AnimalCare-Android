@@ -3,18 +3,25 @@ package com.jaimenejaim.android.animalcare.ui.new_animal;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 
 import com.jaimenejaim.android.animalcare.R;
+import com.jaimenejaim.android.animalcare.data.persistence.callback.DatabaseCallback;
+import com.jaimenejaim.android.animalcare.data.persistence.entity.Animal;
+
+import java.util.List;
 
 public class NewAnimalActivity extends AppCompatActivity implements NewAnimalViewImpl {
 
     EditText editTextName, editTextBreed, editTextBirthDay;
     Spinner spinnerBreed;
     Button buttonSave;
+
+    NewAnimalPresenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,8 +30,11 @@ public class NewAnimalActivity extends AppCompatActivity implements NewAnimalVie
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        intiPresenter();
         initComponents(findViewById(android.R.id.content));
         setListeners();
+
+
     }
 
     @Override
@@ -44,7 +54,38 @@ public class NewAnimalActivity extends AppCompatActivity implements NewAnimalVie
         buttonSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                finish();
+
+
+                Animal animal = new Animal();
+                animal.setName(editTextName.getText().toString());
+
+
+                presenter.save(animal, new DatabaseCallback() {
+                    @Override
+                    public void onComplete() {
+
+                    }
+
+                    @Override
+                    public void onComplete(Object o) {
+
+                    }
+
+                    @Override
+                    public void onComplete(List t) {
+
+                        List<Animal> animals = ((List<Animal>) t);
+
+                        Log.i("NewAnimalActivity"," name = ".concat(animals.get(0).getName()));
+                        Log.i("NewAnimalActivity"," id = ".concat(String.valueOf(animals.get(0).getId())));
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+                });
             }
         });
 
@@ -53,5 +94,10 @@ public class NewAnimalActivity extends AppCompatActivity implements NewAnimalVie
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+    }
+
+    @Override
+    public void intiPresenter() {
+        presenter = new NewAnimalPresenter(this);
     }
 }

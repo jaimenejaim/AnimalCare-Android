@@ -36,6 +36,7 @@ public class MyAnimalsFragment extends Fragment implements MyAnimalsViewImpl {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_my_animals, container, false);
 
+        intiPresenter();
         initComponents(view);
         setListeners();
 
@@ -92,6 +93,11 @@ public class MyAnimalsFragment extends Fragment implements MyAnimalsViewImpl {
 
     @Override
     public void onBackPressed() {
+
+    }
+
+    @Override
+    public void intiPresenter() {
 
     }
 }

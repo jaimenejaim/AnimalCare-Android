@@ -43,4 +43,9 @@ public class MessagesFragment extends Fragment implements MessagesViewImpl {
     public void onBackPressed() {
 
     }
+
+    @Override
+    public void intiPresenter() {
+
+    }
 }

@@ -22,10 +22,12 @@ public class LogInActivity extends AppCompatActivity implements LogInViewImpl {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_log_in);
 
+        intiPresenter();
         initComponents(findViewById(android.R.id.content));
         setListeners();
 
-        presenter = new LogInPresenter(this);
+
+
 
     }
 
@@ -56,5 +58,10 @@ public class LogInActivity extends AppCompatActivity implements LogInViewImpl {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+    }
+
+    @Override
+    public void intiPresenter() {
+        presenter = new LogInPresenter(this);
     }
 }

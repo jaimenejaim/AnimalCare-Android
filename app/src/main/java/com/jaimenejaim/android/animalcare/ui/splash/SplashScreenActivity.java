@@ -14,6 +14,7 @@ public class SplashScreenActivity extends AppCompatActivity implements SplashScr
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
 
+        intiPresenter();
         initComponents(findViewById(android.R.id.content));
         setListeners();
 
@@ -32,6 +33,11 @@ public class SplashScreenActivity extends AppCompatActivity implements SplashScr
 
     @Override
     public void onBackPressed() {
+
+    }
+
+    @Override
+    public void intiPresenter() {
 
     }
 

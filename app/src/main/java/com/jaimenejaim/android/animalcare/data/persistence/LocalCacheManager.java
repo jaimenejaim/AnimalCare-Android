@@ -1,5 +1,21 @@
 package com.jaimenejaim.android.animalcare.data.persistence;
 
+import android.arch.persistence.room.Room;
+import android.content.Context;
+
+import com.jaimenejaim.android.animalcare.data.persistence.callback.DatabaseCallback;
+import com.jaimenejaim.android.animalcare.data.persistence.entity.AutoSaveEmail;
+
+import java.util.List;
+
+import io.reactivex.Completable;
+import io.reactivex.CompletableObserver;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
+
+import android.app.Notification.Action;
+
 /**
  * Created by jaimenejaim on 12/03/2018.
  */
@@ -9,7 +25,7 @@ public class LocalCacheManager {
 //    public static final String DB_NAME = "database-animalcare";
 //    private Context context;
 //    private static LocalCacheManager _instance;
-//    private AutoSaveEmailDatabase db;
+//    private AppDatabase db;
 //
 //    public static LocalCacheManager getInstance(Context context) {
 //        return (_instance == null ? _instance = new LocalCacheManager(context) : _instance);
@@ -17,11 +33,11 @@ public class LocalCacheManager {
 //
 //    public LocalCacheManager(Context context) {
 //        this.context = context;
-//        db = Room.databaseBuilder(context, AutoSaveEmailDatabase.class, DB_NAME).build();
+//        db = Room.databaseBuilder(context, AppDatabase.class, DB_NAME).build();
 //    }
 //
 //    public void findAll(final DatabaseCallback<AutoSaveEmail> databaseCallback) {
-//        db.dao().findAll().subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(new Consumer<List<AutoSaveEmail>>() {
+//        db.userDao().findAll().subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(new Consumer<List<AutoSaveEmail>>() {
 //            @Override
 //            public void accept(@io.reactivex.annotations.NonNull List<AutoSaveEmail> users) throws Exception {
 //                databaseCallback.onComplete(users);
@@ -36,7 +52,7 @@ public class LocalCacheManager {
 //            public void run() throws Exception {
 //
 //                AutoSaveEmail autoSaveEmail = new AutoSaveEmail(firstName, lastName);
-//                db.dao().insert(autoSaveEmail);
+//                db.userDao().insert(autoSaveEmail);
 //            }
 //        }).observeOn(AndroidSchedulers.mainThread())
 //                .subscribeOn(Schedulers.io()).subscribe(new CompletableObserver() {

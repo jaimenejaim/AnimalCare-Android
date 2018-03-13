@@ -22,6 +22,7 @@ public class SettingsFragment extends Fragment implements SettingsViewImpl {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_settings, container, false);
 
+        intiPresenter();
         initComponents(view);
         setListeners();
 
@@ -41,6 +42,11 @@ public class SettingsFragment extends Fragment implements SettingsViewImpl {
 
     @Override
     public void onBackPressed() {
+
+    }
+
+    @Override
+    public void intiPresenter() {
 
     }
 }

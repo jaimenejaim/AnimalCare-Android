@@ -31,6 +31,7 @@ public class HomeActivity extends AppCompatActivity implements HomeViewImpl {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+        intiPresenter();
         initComponents(findViewById(android.R.id.content));
         setListeners();
 
@@ -96,5 +97,10 @@ public class HomeActivity extends AppCompatActivity implements HomeViewImpl {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+    }
+
+    @Override
+    public void intiPresenter() {
+
     }
 }

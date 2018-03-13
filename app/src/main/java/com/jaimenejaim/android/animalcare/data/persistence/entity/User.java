@@ -1,10 +1,20 @@
 package com.jaimenejaim.android.animalcare.data.persistence.entity;
 
 import android.arch.persistence.room.ColumnInfo;
+import android.arch.persistence.room.Embedded;
 import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.ForeignKey;
+import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
+import android.arch.persistence.room.Relation;
+import android.arch.persistence.room.TypeConverters;
 
 import com.google.gson.annotations.SerializedName;
+import com.jaimenejaim.android.animalcare.data.persistence.converter.DateConverter;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 import io.reactivex.annotations.NonNull;
 
@@ -13,9 +23,9 @@ import io.reactivex.annotations.NonNull;
  */
 
 @Entity(tableName = "user")
+@TypeConverters(DateConverter.class)
 public class User {
 
-    @NonNull
     @PrimaryKey
     @SerializedName("id")
     @ColumnInfo(name = "id")
@@ -29,18 +39,33 @@ public class User {
     @ColumnInfo(name = "active")
     private boolean active;
 
-//    @SerializedName("animals")
-//    @Relation(parentColumn = "id", entityColumn = "id", entity = Animal.class)
-//    private List<Animal> animals;
+    @Ignore //ignore this attribute when load Room ORM
+    @SerializedName("animals")
+    private List<Animal> animals;
 
+    @ColumnInfo(name = "created_at")
+    @SerializedName("created_at")
+    private Date createdAt;
+
+    @ColumnInfo(name = "updated_at")
+    @SerializedName("updated_at")
+    private Date updatedAt;
 
     /*
-     * Constructor
+     * Constructors
      * */
-//    public User(){
-//        this.animals = new ArrayList<>();
-//    }
-
+    @Ignore //ignore this attribute when load Room ORM
+    public User(){
+        this.animals = new ArrayList<>();
+    }
+    public User(long id, String username, boolean active, Date createdAt, Date updatedAt) {
+        this.id = id;
+        this.username = username;
+        this.active = active;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
+        this.animals = new ArrayList<>();
+    }
 
     /*
     * Gets and Sets
@@ -66,11 +91,24 @@ public class User {
         this.active = active;
     }
 
-//    public List<Animal> getAnimals() {
-//        return animals;
-//    }
-//    public void setAnimals(List<Animal> animals) {
-//        this.animals = animals;
-//    }
+    public List<Animal> getAnimals() {
+        return animals;
+    }
+    public void setAnimals(List<Animal> animals) {
+        this.animals = animals;
+    }
 
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public Date getUpdatedAt() {
+        return updatedAt;
+    }
+    public void setUpdatedAt(Date updatedAt) {
+        this.updatedAt = updatedAt;
+    }
 }
