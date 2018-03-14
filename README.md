@@ -23,10 +23,5 @@ The project itself is under development and programming for a private repository
   
   ## Images
   
-* My Animals Managment list
-![img](http://res.cloudinary.com/drfcfazt5/image/upload/v1521056935/Screenshot_20180314-164511_ce2gtp.png)
 
-* Adding an new Animal
-![img](http://res.cloudinary.com/drfcfazt5/image/upload/v1521056935/Screenshot_20180314-164517_dmhxbf.png)
-
-
+<img src="http://res.cloudinary.com/drfcfazt5/image/upload/v1521056935/Screenshot_20180314-164511_ce2gtp.png" width="425"/> <img src="http://res.cloudinary.com/drfcfazt5/image/upload/v1521056935/Screenshot_20180314-164517_dmhxbf.png" width="425"/> 
