@@ -31,7 +31,7 @@ public class MyAnimalsFragment extends BaseFragment implements MyAnimalsViewImpl
 
     private static final String TAG = MyAnimalsFragment.class.getSimpleName();
     private RecyclerView mRecyclerView;
-    private RecyclerView.Adapter mAdapter;
+    private MyAnimalsRecyclerAdapter mAdapter;
     private FloatingActionButton buttonAdd;
 
 
@@ -47,7 +47,18 @@ public class MyAnimalsFragment extends BaseFragment implements MyAnimalsViewImpl
 
         intiPresenter();
         initComponents(view);
+        configRecyclerView();
         setListeners();
+
+
+
+
+
+
+        return view;
+    }
+
+    public void configRecyclerView(){
 
         List<Animal> animals = new ArrayList<>();
         animals.add(new Animal("Nick","",0));
@@ -61,24 +72,13 @@ public class MyAnimalsFragment extends BaseFragment implements MyAnimalsViewImpl
         animals.add(new Animal("Luck","",0));
         animals.add(new Animal("Mito","",0));
 
-        mAdapter = new MyAnimalsRecyclerAdapter(getContext(), animals, new MyAnimalsRecyclerAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(Animal item) {
-                Log.i(TAG, "name = ".concat(item.getName()));
-            }
-        });
+
+        mAdapter = new MyAnimalsRecyclerAdapter(animals);
         mRecyclerView.addItemDecoration(new DividerItemDecotation(getContext()));
         mRecyclerView.setAdapter(mAdapter);
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-
-
-
-
-
-        return view;
     }
-
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -98,6 +98,13 @@ public class MyAnimalsFragment extends BaseFragment implements MyAnimalsViewImpl
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), NewAnimalActivity.class);
                 startActivityForResult(intent, REQUEST_CODE_NEW_ANIMAL_ACTIVITY);
+            }
+        });
+
+        mAdapter.setOnItemClickListener(new MyAnimalsRecyclerAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(Animal item) {
+                Log.i(TAG, "name = ".concat(item.getName()));
             }
         });
     }

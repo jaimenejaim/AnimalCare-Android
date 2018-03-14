@@ -26,10 +26,14 @@ public class MyAnimalsRecyclerAdapter extends RecyclerView.Adapter<MyAnimalsRecy
     private List<Animal> animals;
 
 
+    public void setOnItemClickListener(OnItemClickListener onItemClickListener){
+        this.listener = onItemClickListener;
+    }
 
-    public MyAnimalsRecyclerAdapter(Context context,List<Animal> animals, OnItemClickListener listener){
+
+
+    public MyAnimalsRecyclerAdapter(List<Animal> animals){
         this.animals = animals;
-        this.listener = listener;
     }
 
 
@@ -40,7 +44,7 @@ public class MyAnimalsRecyclerAdapter extends RecyclerView.Adapter<MyAnimalsRecy
     }
 
     @Override public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.bind(animals.get(position), listener);
+        holder.bind(animals.get(position));
     }
 
     @Override
@@ -63,7 +67,7 @@ public class MyAnimalsRecyclerAdapter extends RecyclerView.Adapter<MyAnimalsRecy
             _breed = itemView.findViewById(R.id.textViewBreed);
         }
 
-        public void bind(final Animal item, final OnItemClickListener listener) {
+        public void bind(final Animal item) {
 
             if(_name != null){
                 Picasso.get().load("http://res.cloudinary.com/drfcfazt5/image/upload/v1521046642/placeholder_dog_tehfax.jpg").into(_photo);
@@ -72,7 +76,7 @@ public class MyAnimalsRecyclerAdapter extends RecyclerView.Adapter<MyAnimalsRecy
 
                 itemView.setOnClickListener(new View.OnClickListener() {
                     @Override public void onClick(View v) {
-                        listener.onItemClick(item);
+                        if(listener !=null) listener.onItemClick(item);
                     }
                 });
             }
