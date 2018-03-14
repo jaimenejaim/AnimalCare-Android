@@ -1,15 +1,6 @@
 # AnimalCare Android
 
-My Animals Managment list
-![img](http://res.cloudinary.com/drfcfazt5/image/upload/v1521056935/Screenshot_20180314-164511_ce2gtp.png)
-
-Adding an new Animal
-![img](http://res.cloudinary.com/drfcfazt5/image/upload/v1521056935/Screenshot_20180314-164517_dmhxbf.png)
-
 ## Sumary
-
-
-## Introdução
 
 This project was originated from an idea among friends.
 
@@ -29,3 +20,13 @@ The project itself is under development and programming for a private repository
   * [Retrofit 2](http://square.github.io/retrofit/)
   * [CircleImageView](https://github.com/hdodenhof/CircleImageView)
   * [Room API](https://developer.android.com/reference/android/arch/persistence/room/Room.html)
+  
+  ## Images
+  
+* My Animals Managment list
+![img](http://res.cloudinary.com/drfcfazt5/image/upload/v1521056935/Screenshot_20180314-164511_ce2gtp.png)
+
+* Adding an new Animal
+![img](http://res.cloudinary.com/drfcfazt5/image/upload/v1521056935/Screenshot_20180314-164517_dmhxbf.png)
+
+
