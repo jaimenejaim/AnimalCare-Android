@@ -1,12 +1,9 @@
 package com.jaimenejaim.android.animalcare.data.persistence.entity;
 
 import android.arch.persistence.room.ColumnInfo;
-import android.arch.persistence.room.Embedded;
 import android.arch.persistence.room.Entity;
-import android.arch.persistence.room.ForeignKey;
 import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
-import android.arch.persistence.room.Relation;
 import android.arch.persistence.room.TypeConverters;
 
 import com.google.gson.annotations.SerializedName;
@@ -16,8 +13,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import io.reactivex.annotations.NonNull;
-
 /**
  * Created by jaimenejaim on 10/03/2018.
  */
@@ -26,9 +21,8 @@ import io.reactivex.annotations.NonNull;
 @TypeConverters(DateConverter.class)
 public class User {
 
-    @PrimaryKey
+    @PrimaryKey()
     @SerializedName("id")
-    @ColumnInfo(name = "id")
     private long id;
 
     @SerializedName("username")

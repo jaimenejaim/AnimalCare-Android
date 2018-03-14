@@ -26,14 +26,34 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
-                    <de.hdodenhof.circleimageview.CircleImageView
-                        android:id="@+id/imageView"
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        android:src="@drawable/placeholder_dog"
-                        android:layout_marginStart="14dp"
-                        android:layout_marginTop="12dp"
-                        android:layout_centerInParent="true" />
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <de.hdodenhof.circleimageview.CircleImageView
+                            android:id="@+id/imageView"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:src="@drawable/placeholder_dog"
+
+                            android:layout_marginTop="12dp"
+                            android:layout_gravity="center" />
+
+                        <TextView
+                            android:layout_marginTop="10dp"
+                            android:gravity="center"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/new_animal_edit_text_touch_in_image_view_to_send"
+                            android:textSize="15dp"
+                            android:textColor="@color/silver"/>
+
+
+                    </LinearLayout>
+
+
+
 
 
                 </RelativeLayout>

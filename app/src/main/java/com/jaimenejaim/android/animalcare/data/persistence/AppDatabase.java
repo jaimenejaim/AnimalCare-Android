@@ -6,6 +6,7 @@ import android.arch.persistence.room.RoomDatabase;
 import android.content.Context;
 
 import com.jaimenejaim.android.animalcare.data.persistence.dao.AnimalDao;
+import com.jaimenejaim.android.animalcare.data.persistence.dao.AutoSaveEmailDao;
 import com.jaimenejaim.android.animalcare.data.persistence.dao.UserDao;
 import com.jaimenejaim.android.animalcare.data.persistence.entity.Animal;
 import com.jaimenejaim.android.animalcare.data.persistence.entity.AutoSaveEmail;
@@ -22,7 +23,7 @@ public abstract class AppDatabase extends RoomDatabase {
 
     public abstract AnimalDao animalDao();
     public abstract UserDao userDao();
-    public abstract AutoSaveEmail autoSaveEmail();
+    public abstract AutoSaveEmailDao autoSaveEmailDao();
 
     private static volatile AppDatabase instance;
 

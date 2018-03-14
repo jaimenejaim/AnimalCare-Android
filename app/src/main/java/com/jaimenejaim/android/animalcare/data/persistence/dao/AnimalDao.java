@@ -22,8 +22,8 @@ public interface AnimalDao extends BaseDao<Animal> {
     @Query("SELECT * FROM animal WHERE id = :id")
     Maybe<Animal> findById(long id);
 
-    @Query("SELECT * FROM animal WHERE userId = :userId")
-    Maybe<List<Animal>> findAllByUserId(long userId);
+    @Query("SELECT * FROM animal WHERE user_id = :user_id")
+    Maybe<List<Animal>> findAllByUserId(long user_id);
 
 
 }
