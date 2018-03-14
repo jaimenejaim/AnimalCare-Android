@@ -21,4 +21,8 @@
     <string name="new_animal_edit_text_name">Nome</string>
     <string name="new_animal_edit_text_touch_in_image_view_to_send">Toque aqui para enviar</string>
     <string name="title_activity_my_animals_detail">MyAnimalsDetailActivity</string>
+    <string name="new_animal_edit_text_name_error">Precisamos saber o nome do seu animal</string>
+    <string name="new_animal_breed_text_name_error">Precisamos saber a raça do seu animal</string>
+
+
 </resources>

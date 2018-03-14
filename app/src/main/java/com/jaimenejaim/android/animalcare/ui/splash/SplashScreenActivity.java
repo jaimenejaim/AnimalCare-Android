@@ -41,4 +41,9 @@ public class SplashScreenActivity extends AppCompatActivity implements SplashScr
 
     }
 
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+    }
 }

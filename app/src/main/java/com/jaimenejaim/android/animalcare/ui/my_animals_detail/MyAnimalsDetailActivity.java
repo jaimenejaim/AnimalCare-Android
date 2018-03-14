@@ -5,14 +5,18 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
 import com.jaimenejaim.android.animalcare.R;
+import com.jaimenejaim.android.animalcare.ui.BaseActivity;
 
-public class MyAnimalsDetailActivity extends AppCompatActivity {
+public class MyAnimalsDetailActivity extends BaseActivity implements MyAnimalsDetailsViewImpl {
+
+
+    Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_animals_detail);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
     }

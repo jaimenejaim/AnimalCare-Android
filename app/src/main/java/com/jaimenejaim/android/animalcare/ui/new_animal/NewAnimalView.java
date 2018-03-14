@@ -6,5 +6,9 @@ import com.jaimenejaim.android.animalcare.ui.ViewImpl;
  * Created by Jaime Nascimento Nejaim on 3/12/2018.
  */
 
-public interface NewAnimalViewImpl extends ViewImpl {
+public interface NewAnimalView extends ViewImpl {
+    void setNameError();
+    void setBreedError();
+    void onSuccess();
+
 }

@@ -8,8 +8,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.AdapterView.OnItemClickListener;
 
 import com.jaimenejaim.android.animalcare.R;
+import com.jaimenejaim.android.animalcare.data.persistence.entity.Animal;
+import com.squareup.picasso.Picasso;
+
+import java.util.List;
 
 /**
  * Created by jaimenejaim on 11/03/2018.
@@ -17,50 +22,66 @@ import com.jaimenejaim.android.animalcare.R;
 
 public class MyAnimalsRecyclerAdapter extends RecyclerView.Adapter<MyAnimalsRecyclerAdapter.ViewHolder> {
 
-    private final LayoutInflater inflater;
-    private String[] title = {};
-    private String[] bleed = {};
+    private OnItemClickListener listener;
+    private List<Animal> animals;
 
 
 
-    public MyAnimalsRecyclerAdapter(Context context, String[] object){
-        inflater = LayoutInflater.from(context);
-        this.title = object;
+    public MyAnimalsRecyclerAdapter(Context context,List<Animal> animals, OnItemClickListener listener){
+        this.animals = animals;
+        this.listener = listener;
     }
+
+
     @NonNull
-    @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-
-        View view = inflater.inflate(R.layout.my_animals_list_row,parent,false);
-
-        return new ViewHolder(view);
+    @Override public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.my_animals_list_row, parent, false);
+        return new ViewHolder(v);
     }
 
-    @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-
-        holder._name.setText(title[position]);
-        holder._breed.setText("Golden Retreiver");
-//            holder._photo.setImageResource(images[position]);
+    @Override public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        holder.bind(animals.get(position), listener);
     }
 
     @Override
     public int getItemCount() {
-        return title.length;
+        return animals.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+
+
+    class ViewHolder extends RecyclerView.ViewHolder {
 
         ImageView _photo;
         TextView _name;
         TextView _breed;
 
         public ViewHolder(View itemView) {
-
             super(itemView);
             _photo = itemView.findViewById(R.id.img);
             _name =  itemView.findViewById(R.id.textViewName);
             _breed = itemView.findViewById(R.id.textViewBreed);
         }
+
+        public void bind(final Animal item, final OnItemClickListener listener) {
+
+            if(_name != null){
+                Picasso.get().load("http://res.cloudinary.com/drfcfazt5/image/upload/v1521046642/placeholder_dog_tehfax.jpg").into(_photo);
+                _name.setText(item.getName());
+                _breed.setText(item.getBreed().getDescription());
+
+                itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override public void onClick(View v) {
+                        listener.onItemClick(item);
+                    }
+                });
+            }
+
+        }
     }
+
+    public interface OnItemClickListener {
+        void onItemClick(Animal item);
+    }
+
 }

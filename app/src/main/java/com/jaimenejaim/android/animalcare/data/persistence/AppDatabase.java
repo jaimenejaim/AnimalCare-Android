@@ -38,5 +38,9 @@ public abstract class AppDatabase extends RoomDatabase {
         return Room.databaseBuilder(context, AppDatabase.class, DB_NAME).build();
     }
 
+    public void clear(){
+        instance = null;
+    }
+
 
 }

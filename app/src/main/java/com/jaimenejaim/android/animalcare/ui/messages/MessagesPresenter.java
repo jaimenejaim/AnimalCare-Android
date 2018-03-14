@@ -6,4 +6,8 @@ package com.jaimenejaim.android.animalcare.ui.messages;
 
 public class MessagesPresenter implements MessagesPresenterImpl {
 
+    @Override
+    public void onDestroy() {
+
+    }
 }

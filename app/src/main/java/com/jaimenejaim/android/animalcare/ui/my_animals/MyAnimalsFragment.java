@@ -8,19 +8,28 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.jaimenejaim.android.animalcare.R;
+import com.jaimenejaim.android.animalcare.data.persistence.entity.Animal;
+import com.jaimenejaim.android.animalcare.data.persistence.entity.Breed;
+import com.jaimenejaim.android.animalcare.ui.BaseFragment;
 import com.jaimenejaim.android.animalcare.ui.my_animals.adapters.MyAnimalsRecyclerAdapter;
 import com.jaimenejaim.android.animalcare.ui.my_animals.others.DividerItemDecotation;
 import com.jaimenejaim.android.animalcare.ui.new_animal.NewAnimalActivity;
+import com.jaimenejaim.android.animalcare.utils.ActivityUtil;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
-public class MyAnimalsFragment extends Fragment implements MyAnimalsViewImpl {
+public class MyAnimalsFragment extends BaseFragment implements MyAnimalsViewImpl {
 
 
+    private static final String TAG = MyAnimalsFragment.class.getSimpleName();
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private FloatingActionButton buttonAdd;
@@ -40,22 +49,24 @@ public class MyAnimalsFragment extends Fragment implements MyAnimalsViewImpl {
         initComponents(view);
         setListeners();
 
-        String[] title = {
+        List<Animal> animals = new ArrayList<>();
+        animals.add(new Animal("Nick","",0));
+        animals.add(new Animal("Ralph","",0));
+        animals.add(new Animal("Zeus","",0));
+        animals.add(new Animal("Vlademir","",0));
+        animals.add(new Animal("Rarus","",0));
+        animals.add(new Animal("Tick","",0));
+        animals.add(new Animal("Bob","",0));
+        animals.add(new Animal("Theo","",0));
+        animals.add(new Animal("Luck","",0));
+        animals.add(new Animal("Mito","",0));
 
-                "Nick",
-                "Ralph",
-                "Zeus",
-                "Vlademir",
-                "Rarus",
-                "tick",
-                "bob",
-                "theo",
-                "Luck",
-                "mito"
-
-        };
-
-        mAdapter = new MyAnimalsRecyclerAdapter(getContext(), title);
+        mAdapter = new MyAnimalsRecyclerAdapter(getContext(), animals, new MyAnimalsRecyclerAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(Animal item) {
+                Log.i(TAG, "name = ".concat(item.getName()));
+            }
+        });
         mRecyclerView.addItemDecoration(new DividerItemDecotation(getContext()));
         mRecyclerView.setAdapter(mAdapter);
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());

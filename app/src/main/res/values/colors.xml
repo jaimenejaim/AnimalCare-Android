@@ -6,4 +6,6 @@
     <color name="white">#fff</color>
     <color name="background">#f7f7f7</color>
     <color name="silver">#c2c2c2</color>
+    <color name="dark_silver">#999999</color>
+    <color name="black">#000000</color>
 </resources>

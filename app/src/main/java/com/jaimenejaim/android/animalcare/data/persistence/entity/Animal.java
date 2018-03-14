@@ -86,6 +86,8 @@ public class Animal {
         this.name = name;
         this.birthDay = birthDay;
         this.breedId = breedId;
+        this.user = new User();
+        this.breed = new Breed();
     }
 
     public Animal(long id, String name, Date createdAt, Date updatedAt, String photo, long userId) {
