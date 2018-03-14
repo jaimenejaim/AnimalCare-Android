@@ -58,17 +58,71 @@ public class MyAnimalsFragment extends BaseFragment implements MyAnimalsViewImpl
 
     public void configRecyclerView(){
 
+        Breed breed = new Breed();
+        breed.setDescription("Golden Retriever");
+
+        Animal nick = new Animal();
+        nick.setName("Nick");
+        nick.setBreedId(0);
+        nick.setBreed(breed);
+
+        Animal ralph = new Animal();
+        ralph.setName("Ralph");
+        ralph.setBreedId(0);
+        ralph.setBreed(breed);
+
+        Animal zeus = new Animal();
+        zeus.setName("Zeus");
+        zeus.setBreedId(0);
+        zeus.setBreed(breed);
+
+
+        Animal vlademir = new Animal();
+        vlademir.setName("Vlademir");
+        vlademir.setBreedId(0);
+        vlademir.setBreed(breed);
+
+        Animal rarus = new Animal();
+        rarus.setName("Rarus");
+        rarus.setBreedId(0);
+        rarus.setBreed(breed);
+
+        Animal tick = new Animal();
+        tick.setName("Tick");
+        tick.setBreedId(0);
+        tick.setBreed(breed);
+
+        Animal bob = new Animal();
+        bob.setName("Bob");
+        bob.setBreedId(0);
+        bob.setBreed(breed);
+
+        Animal theo = new Animal();
+        theo.setName("Theo");
+        theo.setBreedId(0);
+        theo.setBreed(breed);
+
+        Animal luck = new Animal();
+        luck.setName("Luck");
+        luck.setBreedId(0);
+        luck.setBreed(breed);
+
+        Animal barney = new Animal();
+        barney.setName("Barney");
+        barney.setBreedId(0);
+        barney.setBreed(breed);
+
         List<Animal> animals = new ArrayList<>();
-        animals.add(new Animal("Nick","",0));
-        animals.add(new Animal("Ralph","",0));
-        animals.add(new Animal("Zeus","",0));
-        animals.add(new Animal("Vlademir","",0));
-        animals.add(new Animal("Rarus","",0));
-        animals.add(new Animal("Tick","",0));
-        animals.add(new Animal("Bob","",0));
-        animals.add(new Animal("Theo","",0));
-        animals.add(new Animal("Luck","",0));
-        animals.add(new Animal("Mito","",0));
+        animals.add(nick);
+        animals.add(ralph);
+        animals.add(zeus);
+        animals.add(vlademir);
+        animals.add(rarus);
+        animals.add(tick);
+        animals.add(bob);
+        animals.add(theo);
+        animals.add(luck);
+        animals.add(barney);
 
 
         mAdapter = new MyAnimalsRecyclerAdapter(animals);
