@@ -4,6 +4,8 @@ import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
 import android.arch.persistence.room.TypeConverters;
+import android.os.Parcel;
+import android.os.Parcelable;
 
 import com.google.gson.annotations.SerializedName;
 import com.jaimenejaim.android.animalcare.data.persistence.converter.DateConverter;
@@ -16,7 +18,7 @@ import java.util.Date;
 
 @Entity(tableName = "breed")
 @TypeConverters(DateConverter.class)
-public class Breed {
+public class Breed implements Parcelable {
 
     @PrimaryKey
     @SerializedName("id")
@@ -61,4 +63,42 @@ public class Breed {
     public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
     }
+
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeLong(this.id);
+        dest.writeString(this.description);
+        dest.writeLong(this.createdAt != null ? this.createdAt.getTime() : -1);
+        dest.writeLong(this.updatedAt != null ? this.updatedAt.getTime() : -1);
+    }
+
+    public Breed() {
+    }
+
+    protected Breed(Parcel in) {
+        this.id = in.readLong();
+        this.description = in.readString();
+        long tmpCreatedAt = in.readLong();
+        this.createdAt = tmpCreatedAt == -1 ? null : new Date(tmpCreatedAt);
+        long tmpUpdatedAt = in.readLong();
+        this.updatedAt = tmpUpdatedAt == -1 ? null : new Date(tmpUpdatedAt);
+    }
+
+    public static final Parcelable.Creator<Breed> CREATOR = new Parcelable.Creator<Breed>() {
+        @Override
+        public Breed createFromParcel(Parcel source) {
+            return new Breed(source);
+        }
+
+        @Override
+        public Breed[] newArray(int size) {
+            return new Breed[size];
+        }
+    };
 }

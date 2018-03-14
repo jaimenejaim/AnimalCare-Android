@@ -19,6 +19,7 @@ import com.jaimenejaim.android.animalcare.data.persistence.entity.Breed;
 import com.jaimenejaim.android.animalcare.ui.BaseFragment;
 import com.jaimenejaim.android.animalcare.ui.my_animals.adapters.MyAnimalsRecyclerAdapter;
 import com.jaimenejaim.android.animalcare.ui.my_animals.others.DividerItemDecotation;
+import com.jaimenejaim.android.animalcare.ui.my_animals_detail.MyAnimalsDetailActivity;
 import com.jaimenejaim.android.animalcare.ui.new_animal.NewAnimalActivity;
 import com.jaimenejaim.android.animalcare.utils.ActivityUtil;
 
@@ -49,9 +50,6 @@ public class MyAnimalsFragment extends BaseFragment implements MyAnimalsViewImpl
         initComponents(view);
         configRecyclerView();
         setListeners();
-
-
-
 
 
 
@@ -105,6 +103,9 @@ public class MyAnimalsFragment extends BaseFragment implements MyAnimalsViewImpl
             @Override
             public void onItemClick(Animal item) {
                 Log.i(TAG, "name = ".concat(item.getName()));
+                Intent intent = new Intent(getActivity(), MyAnimalsDetailActivity.class);
+                intent.putExtra("animal",item);
+                startActivityForResult(intent, REQUEST_CODE_DETAIL_ANIMAL_ACTIVITY);
             }
         });
     }

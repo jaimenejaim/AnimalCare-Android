@@ -93,7 +93,7 @@ public class NewAnimalActivity extends BaseActivity implements NewAnimalView {
 
     @Override
     public void setBreedError() {
-        editTextBreed.setError(getString(R.string.new_animal_edit_text_breed));
+        editTextBreed.setError(getString(R.string.new_animal_breed_text_name_error));
     }
 
     @Override

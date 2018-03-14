@@ -5,6 +5,8 @@ import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
 import android.arch.persistence.room.TypeConverters;
+import android.os.Parcel;
+import android.os.Parcelable;
 
 import com.google.gson.annotations.SerializedName;
 import com.jaimenejaim.android.animalcare.data.persistence.converter.DateConverter;
@@ -23,7 +25,7 @@ import java.util.Date;
 //        onDelete = ForeignKey.CASCADE)
 //)
 @TypeConverters(DateConverter.class)
-public class Animal {
+public class Animal implements Parcelable {
 
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
@@ -174,4 +176,50 @@ public class Animal {
         this.birthDay = birthDay;
     }
 
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeLong(this.id);
+        dest.writeString(this.photo);
+        dest.writeString(this.name);
+        dest.writeString(this.birthDay);
+        dest.writeParcelable(this.user, flags);
+        dest.writeParcelable(this.breed, flags);
+        dest.writeLong(this.userId);
+        dest.writeLong(this.breedId);
+        dest.writeLong(this.createdAt != null ? this.createdAt.getTime() : -1);
+        dest.writeLong(this.updatedAt != null ? this.updatedAt.getTime() : -1);
+    }
+
+    protected Animal(Parcel in) {
+        this.id = in.readLong();
+        this.photo = in.readString();
+        this.name = in.readString();
+        this.birthDay = in.readString();
+        this.user = in.readParcelable(User.class.getClassLoader());
+        this.breed = in.readParcelable(Breed.class.getClassLoader());
+        this.userId = in.readLong();
+        this.breedId = in.readLong();
+        long tmpCreatedAt = in.readLong();
+        this.createdAt = tmpCreatedAt == -1 ? null : new Date(tmpCreatedAt);
+        long tmpUpdatedAt = in.readLong();
+        this.updatedAt = tmpUpdatedAt == -1 ? null : new Date(tmpUpdatedAt);
+    }
+
+    public static final Creator<Animal> CREATOR = new Creator<Animal>() {
+        @Override
+        public Animal createFromParcel(Parcel source) {
+            return new Animal(source);
+        }
+
+        @Override
+        public Animal[] newArray(int size) {
+            return new Animal[size];
+        }
+    };
 }

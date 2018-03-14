@@ -8,4 +8,5 @@ import com.jaimenejaim.android.animalcare.ui.ViewImpl;
 
 public interface MyAnimalsViewImpl extends ViewImpl {
     int REQUEST_CODE_NEW_ANIMAL_ACTIVITY = 909;
+    int REQUEST_CODE_DETAIL_ANIMAL_ACTIVITY = 910;
 }
