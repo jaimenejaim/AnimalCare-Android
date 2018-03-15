@@ -2,6 +2,7 @@ package com.jaimenejaim.android.animalcare.ui.settings;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +17,8 @@ public class SettingsFragment extends Fragment implements SettingsViewImpl {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
+
+    RecyclerView mRecyclerView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -32,7 +35,7 @@ public class SettingsFragment extends Fragment implements SettingsViewImpl {
 
     @Override
     public void initComponents(View view) {
-
+        mRecyclerView = view.findViewById(R.id.recyclerView);
     }
 
     @Override

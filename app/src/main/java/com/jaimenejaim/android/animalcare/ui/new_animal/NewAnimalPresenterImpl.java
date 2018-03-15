@@ -1,12 +1,5 @@
 package com.jaimenejaim.android.animalcare.ui.new_animal;
 
-import android.app.Activity;
-
-import com.jaimenejaim.android.animalcare.data.persistence.AppDatabase;
-import com.jaimenejaim.android.animalcare.data.persistence.callback.DatabaseCallback;
-
-import java.util.List;
-
 /**
  * Created by Jaime Nascimento Nejaim on 3/12/2018.
  */
@@ -24,7 +17,8 @@ public class NewAnimalPresenterImpl implements NewAnimalPresenter, NewAnimalInte
 
     @Override
     public void onDestroy() {
-        interactor = null;
+        this.newAnimalView = null;
+        this.interactor = null;
     }
 
     @Override
