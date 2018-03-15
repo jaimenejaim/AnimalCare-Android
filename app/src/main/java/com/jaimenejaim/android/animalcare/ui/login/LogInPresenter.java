@@ -8,6 +8,7 @@ import android.util.Log;
 import com.jaimenejaim.android.animalcare.data.persistence.entity.Auth;
 import com.jaimenejaim.android.animalcare.data.network.api.Network;
 import com.jaimenejaim.android.animalcare.data.network.api.Service;
+import com.jaimenejaim.android.animalcare.data.pref.Session;
 import com.jaimenejaim.android.animalcare.ui.home.HomeActivity;
 
 import io.reactivex.Observer;
@@ -52,6 +53,10 @@ public class LogInPresenter implements LogInPresenterImpl {
                     @Override
                     public void onNext(Auth auth) {
                         Log.i(TAG,"onNext = ".concat(auth.getFormattedToken()));
+
+                        //Saving current logged user;
+                        Session.make(activity, auth);
+
                     }
 
                     @Override
@@ -81,6 +86,9 @@ public class LogInPresenter implements LogInPresenterImpl {
 
                     @Override
                     public void onComplete() {
+
+
+
                         Log.i(TAG,"onComplete");
 
                         Intent intent = new Intent(activity, HomeActivity.class);

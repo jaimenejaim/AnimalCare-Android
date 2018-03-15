@@ -19,22 +19,11 @@
         android:layout_height="wrap_content">
 
 
-        <ImageView
-            android:layout_gravity="center"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/logo"/>
-
-
-        <TextView
+        <include layout="@layout/logo_layout"
             android:layout_marginTop="-15dp"
-            android:gravity="center"
-            android:textStyle="bold"
-            android:textColor="@color/white"
-            android:textSize="30dp"
-            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="AnimalCare"/>
+            android:layout_width="wrap_content"
+            android:layout_gravity="center"/>
 
 
         <LinearLayout
