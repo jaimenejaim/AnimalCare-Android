@@ -78,7 +78,20 @@ public class Breed implements Parcelable {
         dest.writeLong(this.updatedAt != null ? this.updatedAt.getTime() : -1);
     }
 
+
     public Breed() {
+
+    }
+
+    public Breed(long id, String description, Date createdAt, Date updatedAt) {
+        this.id = id;
+        this.description = description;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
+    }
+
+    public Breed(String description) {
+        this.description = description;
     }
 
     protected Breed(Parcel in) {

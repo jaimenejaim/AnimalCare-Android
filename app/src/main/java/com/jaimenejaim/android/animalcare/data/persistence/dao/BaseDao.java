@@ -5,6 +5,8 @@ import android.arch.persistence.room.Delete;
 import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.Update;
 
+import java.util.List;
+
 /**
  * Created by jaimenejaim on 12/03/2018.
  */
@@ -28,7 +30,7 @@ public interface BaseDao<T> {
      * @param objs the objects to be inserted.
      */
     @Insert
-    void insert(T... objs);
+    void insert(List<T> objs);
 
 
     /**

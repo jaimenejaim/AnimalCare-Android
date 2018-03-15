@@ -1,5 +1,6 @@
 package com.jaimenejaim.android.animalcare.ui.login;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
@@ -15,6 +16,7 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 import retrofit2.HttpException;
 import retrofit2.Response;
+import com.jaimenejaim.android.animalcare.data.persistence.seed.BreedSeed;
 
 /**
  * Created by jaimenejaim on 09/03/2018.
@@ -24,12 +26,13 @@ public class LogInPresenter implements LogInPresenterImpl {
 
     private static final String TAG = LogInPresenter.class.getSimpleName();
 
-    private Context mContext;
+    private Context activity;
     private Service networkService;
 
-    public LogInPresenter(Context mContext){
+    public LogInPresenter(Activity activity){
         networkService = Network.getAPIService();
-        this.mContext = mContext;
+        this.activity = activity;
+
     }
 
 
@@ -80,8 +83,8 @@ public class LogInPresenter implements LogInPresenterImpl {
                     public void onComplete() {
                         Log.i(TAG,"onComplete");
 
-                        Intent intent = new Intent(mContext, HomeActivity.class);
-                        mContext.startActivity(intent);
+                        Intent intent = new Intent(activity, HomeActivity.class);
+                        activity.startActivity(intent);
                     }
                 });
     }

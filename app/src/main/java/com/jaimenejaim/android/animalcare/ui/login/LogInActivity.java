@@ -7,6 +7,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.jaimenejaim.android.animalcare.R;
+import com.jaimenejaim.android.animalcare.data.persistence.seed.BreedSeed;
 
 public class LogInActivity extends AppCompatActivity implements LogInViewImpl {
 
@@ -26,7 +27,8 @@ public class LogInActivity extends AppCompatActivity implements LogInViewImpl {
         initComponents(findViewById(android.R.id.content));
         setListeners();
 
-
+        //create breed if not exists
+        new BreedSeed(this).create();
 
 
     }
