@@ -1,6 +1,7 @@
 package com.jaimenejaim.android.animalcare.ui.splash;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -15,19 +16,16 @@ import com.jaimenejaim.android.animalcare.data.pref.Session;
 import com.jaimenejaim.android.animalcare.ui.home.HomeActivity;
 import com.jaimenejaim.android.animalcare.ui.login.LogInActivity;
 
-public class SplashScreenActivity extends AppCompatActivity implements SplashScreenViewImpl {
+public class SplashScreenActivity extends AppCompatActivity implements SplashScreenView {
 
 
     private TextView textViewLoading;
-    private Handler handlerTextViewLoading;
-    private Runnable runnableTextView;
-
-
     private ImageView imageViewLogo;
-    private Runnable runnableImageViewLogo;
 
 
-    private SplashScreenPresenter presenter;
+
+
+    private SplashScreenPresenterImpl presenter;
 
 
     @Override
@@ -41,16 +39,9 @@ public class SplashScreenActivity extends AppCompatActivity implements SplashScr
         intiPresenter();
         setListeners();
 
-        startRunnableLoadingDots();
-        startRunnableBlinkOfEyes();
 
 
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                verifySession();
-            }
-        }, 2000);
+
 
     }
 
@@ -72,7 +63,7 @@ public class SplashScreenActivity extends AppCompatActivity implements SplashScr
 
     @Override
     public void intiPresenter() {
-        this.presenter = new SplashScreenPresenter();
+        presenter = new SplashScreenPresenterImpl(this, new SplashScreenInteractorImpl(this));
     }
 
 
@@ -92,68 +83,11 @@ public class SplashScreenActivity extends AppCompatActivity implements SplashScr
     }
 
     @Override
-    public void startRunnableBlinkOfEyes() {
-        runnableImageViewLogo = new Runnable() {
-
-            int i = 0;
-            boolean interval = false;
-            int count = 0;
-            int delay = 250;
-
-            @Override
-            public void run() {
-                if(!interval){
-                    if(i++ % 2 == 0) {
-                        imageViewLogo.setImageResource(R.drawable.logo);
-                        if(count < 3){
-                            count++;
-                            if(count == 3){
-                                interval = true;
-                            }
-                        }
-                    }else {
-                        imageViewLogo.setImageResource(R.drawable.logo_closed_eye);
-                    }
-
-                    delay = 250;
-
-                }else{
-                    count = 0;
-                    delay = 2000;
-                    interval = false;
-                }
-                imageViewLogo.postDelayed(this, delay);
-            }
-        };
-
-        imageViewLogo.postDelayed(runnableImageViewLogo, 1000);
+    public void setBackgroundImageViewLogo(int drawable) {
+        imageViewLogo.setBackgroundResource(drawable);
     }
 
-    @Override
-    public void startRunnableLoadingDots() {
-        handlerTextViewLoading = new Handler(Looper.getMainLooper());
-        runnableTextView = new Runnable() {
-            int index = 0;
-            @Override
-            public void run() {
-                switch(index % 5) {
-                    case 0:
-                        nofityDataCharged(getString(R.string.splash_screen_text_view_loading).concat(".    "));
-                        break;
-                    case 1:
-                        nofityDataCharged(getString(R.string.splash_screen_text_view_loading).concat("..   "));
-                        break;
-                    case 2:
-                        nofityDataCharged(getString(R.string.splash_screen_text_view_loading).concat("...  "));
-                        break;
-                }
-                index++;
 
-                handlerTextViewLoading.postDelayed(this, 1000);
-            }
-        };
-        handlerTextViewLoading.post(runnableTextView);
-    }
 
     @Override
     public void removeCallbacksFromLoading() {
@@ -165,15 +99,10 @@ public class SplashScreenActivity extends AppCompatActivity implements SplashScr
         imageViewLogo.removeCallbacks(runnableImageViewLogo);
     }
 
-    @Override
-    public void verifySession() {
-        if(Session.get(this) == null)
-            openActivity(new LogInActivity());
-        else
-            openActivity(new HomeActivity());
-    }
 
-    private void openActivity(Object activity) {
+
+    @Override
+    public void openActivity(Object activity) {
         Intent intent = new Intent(SplashScreenActivity.this, activity.getClass());
         startActivity(intent);
         finish();
