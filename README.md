@@ -24,5 +24,6 @@ The project itself is under development and programming for a private repository
   ## Images
   
 
-<img src="http://res.cloudinary.com/drfcfazt5/image/upload/v1521159956/WhatsApp_Image_2018-03-15_at_21.24.39_oj3btv.jpg" width="255"/>
-<img src="http://res.cloudinary.com/drfcfazt5/image/upload/v1521056935/Screenshot_20180314-164511_ce2gtp.png" width="255"/> <img src="http://res.cloudinary.com/drfcfazt5/image/upload/v1521056935/Screenshot_20180314-164517_dmhxbf.png" width="255"/> 
+
+<img src="http://res.cloudinary.com/drfcfazt5/image/upload/v1521056935/Screenshot_20180314-164511_ce2gtp.png" width="280"/> <img src="http://res.cloudinary.com/drfcfazt5/image/upload/v1521056935/Screenshot_20180314-164517_dmhxbf.png" width="280"/> 
+<img src="http://res.cloudinary.com/drfcfazt5/image/upload/v1521159956/WhatsApp_Image_2018-03-15_at_21.24.39_oj3btv.jpg" width="280"/>
