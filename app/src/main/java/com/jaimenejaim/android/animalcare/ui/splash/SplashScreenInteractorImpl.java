@@ -4,10 +4,11 @@ package com.jaimenejaim.android.animalcare.ui.splash;
 import android.app.Activity;
 import android.os.Handler;
 import android.os.Looper;
+import android.util.Log;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.jaimenejaim.android.animalcare.R;
-import com.jaimenejaim.android.animalcare.data.persistence.AppDatabase;
 import com.jaimenejaim.android.animalcare.data.pref.Session;
 import com.jaimenejaim.android.animalcare.ui.home.HomeActivity;
 import com.jaimenejaim.android.animalcare.ui.login.LogInActivity;
@@ -36,7 +37,8 @@ public class SplashScreenInteractorImpl implements SplashScreenPresenter, Splash
     }
 
     @Override
-    public void startRunnableBlinkOfEyes() {
+    public void startRunnableBlinkOfEyes(final ImageView imageView) {
+        Log.i("testes"," startou startRunnableBlinkOfEyes");
         runnableImageViewLogo = new Runnable() {
 
             int i = 0;
@@ -48,7 +50,7 @@ public class SplashScreenInteractorImpl implements SplashScreenPresenter, Splash
             public void run() {
                 if(!interval){
                     if(i++ % 2 == 0) {
-                        imageViewLogo.setImageResource(R.drawable.logo);
+                        setImageResource(imageView, R.drawable.logo);
                         if(count < 3){
                             count++;
                             if(count == 3){
@@ -56,7 +58,7 @@ public class SplashScreenInteractorImpl implements SplashScreenPresenter, Splash
                             }
                         }
                     }else {
-                        imageViewLogo.setImageResource(R.drawable.logo_closed_eye);
+                        setImageResource(imageView, R.drawable.logo_closed_eye);
                     }
 
                     delay = 250;
@@ -66,15 +68,16 @@ public class SplashScreenInteractorImpl implements SplashScreenPresenter, Splash
                     delay = 2000;
                     interval = false;
                 }
-                imageViewLogo.postDelayed(this, delay);
+                postDelayed(imageView,this, delay);
             }
         };
 
-        imageViewLogo.postDelayed(runnableImageViewLogo, 1000);
+        postDelayed(imageView, runnableImageViewLogo, 1000);
     }
 
     @Override
-    public void startRunnableLoadingDots() {
+    public void startRunnableLoadingDots(final TextView textView) {
+        Log.i("testes"," startou startRunnableLoadingDots");
         handlerTextViewLoading = new Handler(Looper.getMainLooper());
         runnableTextView = new Runnable() {
             int index = 0;
@@ -82,13 +85,13 @@ public class SplashScreenInteractorImpl implements SplashScreenPresenter, Splash
             public void run() {
                 switch(index % 5) {
                     case 0:
-                        nofityDataCharged(activity.getString(R.string.splash_screen_text_view_loading).concat(".    "));
+                        nofityDataCharged(textView,activity.getString(R.string.splash_screen_text_view_loading).concat(".    "));
                         break;
                     case 1:
-                        nofityDataCharged(activity.getString(R.string.splash_screen_text_view_loading).concat("..   "));
+                        nofityDataCharged(textView,activity.getString(R.string.splash_screen_text_view_loading).concat("..   "));
                         break;
                     case 2:
-                        nofityDataCharged(activity.getString(R.string.splash_screen_text_view_loading).concat("...  "));
+                        nofityDataCharged(textView, activity.getString(R.string.splash_screen_text_view_loading).concat("...  "));
                         break;
                 }
                 index++;
@@ -99,15 +102,6 @@ public class SplashScreenInteractorImpl implements SplashScreenPresenter, Splash
         handlerTextViewLoading.post(runnableTextView);
     }
 
-    @Override
-    public void removeCallbacksFromLoading() {
-
-    }
-
-    @Override
-    public void removeCallbacksFromImageView() {
-
-    }
 
     @Override
     public void verifySession() {
@@ -116,5 +110,51 @@ public class SplashScreenInteractorImpl implements SplashScreenPresenter, Splash
         else
             openActivity(new HomeActivity());
     }
+
+    @Override
+    public void openActivity(Object activity) {
+        //return comunicate with view
+
+    }
+
+    @Override
+    public void setImageResource(ImageView imageView, int resource) {
+        //return comunicate with view
+//        setImageResource(resource);
+    }
+
+    @Override
+    public void nofityDataCharged(TextView textView, String msg) {
+        //return cominication with view
+//        nofityDataCharged(msg);
+    }
+
+
+
+    @Override
+    public void onDestroy() {
+//        removeCallbacksFromLoading(runnableTextView);
+//        removeCallbacksFromImageView(runnableImageViewLogo);
+    }
+
+
+
+
+    @Override
+    public void removeCallbacksFromLoading(TextView textView, Runnable runnable) {
+        textView.removeCallbacks(runnable);
+    }
+
+    @Override
+    public void removeCallbacksFromImageView(ImageView imageView, Runnable runnable) {
+        imageView.removeCallbacks(runnable);
+    }
+
+    @Override
+    public void postDelayed(ImageView imageView, Runnable runnable, int delay) {
+        imageView.postDelayed(runnable, delay);
+    }
+
+
 
 }

@@ -1,7 +1,5 @@
 package com.jaimenejaim.android.animalcare.ui.splash;
 
-import android.graphics.drawable.Drawable;
-
 import com.jaimenejaim.android.animalcare.ui.ViewImpl;
 
 /**
@@ -10,7 +8,7 @@ import com.jaimenejaim.android.animalcare.ui.ViewImpl;
 
 public interface SplashScreenView extends ViewImpl {
     void nofityDataCharged(String msg);
-    void setBackgroundImageViewLogo(int drawable);
     void openActivity(Object activity);
+    void setImageResource(int resource);
 
 }

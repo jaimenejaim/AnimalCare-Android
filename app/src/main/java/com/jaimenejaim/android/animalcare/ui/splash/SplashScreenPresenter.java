@@ -5,4 +5,5 @@ package com.jaimenejaim.android.animalcare.ui.splash;
  */
 
 public interface SplashScreenPresenter {
+    void onDestroy();
 }
