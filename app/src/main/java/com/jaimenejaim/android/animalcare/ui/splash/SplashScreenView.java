@@ -1,5 +1,9 @@
 package com.jaimenejaim.android.animalcare.ui.splash;
 
+import android.content.Context;
+import android.widget.ImageView;
+import android.widget.TextView;
+
 import com.jaimenejaim.android.animalcare.ui.ViewImpl;
 
 /**
@@ -10,5 +14,9 @@ public interface SplashScreenView extends ViewImpl {
     void nofityDataCharged(String msg);
     void openActivity(Object activity);
     void setImageResource(int resource);
+    Context getContext();
+    TextView getTextViewLoading();
+    ImageView getImageViewLoading();
+    void onDestroy();
 
 }

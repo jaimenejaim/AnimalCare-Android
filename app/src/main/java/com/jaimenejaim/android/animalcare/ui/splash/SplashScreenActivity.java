@@ -1,5 +1,6 @@
 package com.jaimenejaim.android.animalcare.ui.splash;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -52,16 +53,14 @@ public class SplashScreenActivity extends AppCompatActivity implements SplashScr
 
     @Override
     public void intiPresenter() {
-        presenter = new SplashScreenPresenterImpl(this, new SplashScreenInteractorImpl(this));
+        presenter = new SplashScreenPresenterImpl(this);
     }
 
 
 
     @Override
-    protected void onDestroy() {
-
+    public void onDestroy() {
         presenter.onDestroy();
-
         super.onDestroy();
     }
 
@@ -83,6 +82,23 @@ public class SplashScreenActivity extends AppCompatActivity implements SplashScr
     public void setImageResource(int resource) {
         imageViewLogo.setImageResource(resource);
     }
+
+    @Override
+    public Context getContext() {
+        return this;
+    }
+
+    @Override
+    public TextView getTextViewLoading() {
+        return this.textViewLoading;
+    }
+
+    @Override
+    public ImageView getImageViewLoading() {
+        return this.imageViewLogo;
+    }
+
+
 
 
 }
