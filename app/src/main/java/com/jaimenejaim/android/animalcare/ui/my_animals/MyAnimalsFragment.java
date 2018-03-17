@@ -143,22 +143,16 @@ public class MyAnimalsFragment extends BaseFragment implements MyAnimalsViewImpl
 
     @Override
     public void setListeners() {
-        buttonAdd.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), NewAnimalActivity.class);
-                startActivityForResult(intent, REQUEST_CODE_NEW_ANIMAL_ACTIVITY);
-            }
+        buttonAdd.setOnClickListener(view -> {
+            Intent intent = new Intent(getActivity(), NewAnimalActivity.class);
+            startActivityForResult(intent, REQUEST_CODE_NEW_ANIMAL_ACTIVITY);
         });
 
-        mAdapter.setOnItemClickListener(new MyAnimalsRecyclerAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(Animal item) {
-                Log.i(TAG, "name = ".concat(item.getName()));
-                Intent intent = new Intent(getActivity(), MyAnimalsDetailActivity.class);
-                intent.putExtra("animal",item);
-                startActivityForResult(intent, REQUEST_CODE_DETAIL_ANIMAL_ACTIVITY);
-            }
+        mAdapter.setOnItemClickListener(item -> {
+            Log.i(TAG, "name = ".concat(item.getName()));
+            Intent intent = new Intent(getActivity(), MyAnimalsDetailActivity.class);
+            intent.putExtra("animal",item);
+            startActivityForResult(intent, REQUEST_CODE_DETAIL_ANIMAL_ACTIVITY);
         });
     }
 

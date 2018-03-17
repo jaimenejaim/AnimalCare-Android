@@ -17,6 +17,7 @@ import com.jaimenejaim.android.animalcare.ui.settings.SettingsFragment;
 
 public class HomeActivity extends AppCompatActivity implements HomeViewImpl {
 
+    private HomePresenter presenter;
 
     private ViewPager viewPager;
     private BottomNavigationView bottomNavigationView;
@@ -96,11 +97,11 @@ public class HomeActivity extends AppCompatActivity implements HomeViewImpl {
 
     @Override
     public void intiPresenter() {
-
+        presenter = new HomePresenter(this);
     }
 
     @Override
     public Context getContext() {
-        return null;
+        return this;
     }
 }

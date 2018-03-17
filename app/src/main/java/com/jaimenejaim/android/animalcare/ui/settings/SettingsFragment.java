@@ -1,5 +1,6 @@
 package com.jaimenejaim.android.animalcare.ui.settings;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
@@ -47,5 +48,10 @@ public class SettingsFragment extends Fragment implements SettingsViewImpl {
     @Override
     public void intiPresenter() {
 
+    }
+
+    @Override
+    public Context getContext() {
+        return super.getContext();
     }
 }

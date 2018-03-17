@@ -1,6 +1,5 @@
 package com.jaimenejaim.android.animalcare.ui.my_animals.adapters;
 
-import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -8,7 +7,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.AdapterView.OnItemClickListener;
 
 import com.jaimenejaim.android.animalcare.R;
 import com.jaimenejaim.android.animalcare.data.persistence.entity.Animal;
@@ -74,10 +72,8 @@ public class MyAnimalsRecyclerAdapter extends RecyclerView.Adapter<MyAnimalsRecy
                 _name.setText(item.getName());
                 _breed.setText(item.getBreed().getDescription());
 
-                itemView.setOnClickListener(new View.OnClickListener() {
-                    @Override public void onClick(View v) {
-                        if(listener !=null) listener.onItemClick(item);
-                    }
+                itemView.setOnClickListener(v -> {
+                    if(listener !=null) listener.onItemClick(item);
                 });
             }
 

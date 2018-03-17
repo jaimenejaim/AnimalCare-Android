@@ -1,6 +1,5 @@
 package com.jaimenejaim.android.animalcare.ui.settings;
 
-import android.app.Activity;
 import android.content.Context;
 
 /**
@@ -9,7 +8,10 @@ import android.content.Context;
 
 public class SettingsPresenter implements SettingsPresenterImpl {
 
-    public SettingsPresenter(Activity mActivity) {
+    SettingsViewImpl view;
+
+    public SettingsPresenter(SettingsViewImpl view) {
+        this.view = view;
     }
 
     @Override
@@ -19,6 +21,6 @@ public class SettingsPresenter implements SettingsPresenterImpl {
 
     @Override
     public Context getContext() {
-        return null;
+        return view.getContext();
     }
 }
