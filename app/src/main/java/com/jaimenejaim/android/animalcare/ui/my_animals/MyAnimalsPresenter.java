@@ -1,5 +1,7 @@
 package com.jaimenejaim.android.animalcare.ui.my_animals;
 
+import android.content.Context;
+
 import com.jaimenejaim.android.animalcare.ui.PresenterImpl;
 
 /**
@@ -10,5 +12,10 @@ public class MyAnimalsPresenter implements MyAnimalsPresenterImpl {
     @Override
     public void onDestroy() {
 
+    }
+
+    @Override
+    public Context getContext() {
+        return null;
     }
 }

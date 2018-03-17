@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -21,7 +20,6 @@ import com.jaimenejaim.android.animalcare.ui.my_animals.adapters.MyAnimalsRecycl
 import com.jaimenejaim.android.animalcare.ui.my_animals.others.DividerItemDecotation;
 import com.jaimenejaim.android.animalcare.ui.my_animals_detail.MyAnimalsDetailActivity;
 import com.jaimenejaim.android.animalcare.ui.new_animal.NewAnimalActivity;
-import com.jaimenejaim.android.animalcare.utils.ActivityUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -164,10 +162,6 @@ public class MyAnimalsFragment extends BaseFragment implements MyAnimalsViewImpl
         });
     }
 
-    @Override
-    public void onBackPressed() {
-
-    }
 
     @Override
     public void intiPresenter() {

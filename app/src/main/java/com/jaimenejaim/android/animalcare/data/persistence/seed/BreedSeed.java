@@ -1,6 +1,6 @@
 package com.jaimenejaim.android.animalcare.data.persistence.seed;
 
-import android.app.Activity;
+import android.content.Context;
 
 import com.jaimenejaim.android.animalcare.data.persistence.AppDatabase;
 
@@ -20,8 +20,8 @@ public class BreedSeed {
 
     private AppDatabase db;
 
-    public BreedSeed(Activity activity){
-        db = AppDatabase.getInstance(activity.getApplicationContext());
+    public BreedSeed(Context context){
+        db = AppDatabase.getInstance(context);
     }
 
     public void create(){

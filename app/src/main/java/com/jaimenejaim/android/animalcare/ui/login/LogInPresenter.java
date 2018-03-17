@@ -1,13 +1,13 @@
 package com.jaimenejaim.android.animalcare.ui.login;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 
-import com.jaimenejaim.android.animalcare.data.persistence.entity.Auth;
+import com.jaimenejaim.android.animalcare.R;
 import com.jaimenejaim.android.animalcare.data.network.api.Network;
 import com.jaimenejaim.android.animalcare.data.network.api.Service;
+import com.jaimenejaim.android.animalcare.data.persistence.entity.Auth;
+import com.jaimenejaim.android.animalcare.data.persistence.seed.BreedSeed;
 import com.jaimenejaim.android.animalcare.data.pref.Session;
 import com.jaimenejaim.android.animalcare.ui.home.HomeActivity;
 
@@ -17,7 +17,6 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 import retrofit2.HttpException;
 import retrofit2.Response;
-import com.jaimenejaim.android.animalcare.data.persistence.seed.BreedSeed;
 
 /**
  * Created by jaimenejaim on 09/03/2018.
@@ -25,15 +24,16 @@ import com.jaimenejaim.android.animalcare.data.persistence.seed.BreedSeed;
 
 public class LogInPresenter implements LogInPresenterImpl {
 
-    private static final String TAG = LogInPresenter.class.getSimpleName();
 
-    private Context activity;
+    private LogInViewImpl view;
     private Service networkService;
 
-    public LogInPresenter(Activity activity){
+    public LogInPresenter(LogInViewImpl view){
+        this.view = view;
         networkService = Network.getAPIService();
-        this.activity = activity;
 
+        //create breed if not exists
+        new BreedSeed(getContext()).create();
     }
 
 
@@ -41,61 +41,82 @@ public class LogInPresenter implements LogInPresenterImpl {
     @Override
     public void logIn(String email, String password){
 
+
+        if(validadeLogIn(email,password))
+            return;
+
+
         networkService.logIn(email,password)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<Auth>() {
-                    @Override
-                    public void onSubscribe(Disposable d) {
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(new Observer<Auth>() {
+                @Override
+                public void onSubscribe(Disposable d) {}
 
-                    }
+                @Override
+                public void onNext(Auth auth) {
 
-                    @Override
-                    public void onNext(Auth auth) {
-                        Log.i(TAG,"onNext = ".concat(auth.getFormattedToken()));
+                    //Saving current logged user;
+                    Session.make(getContext(), auth);
 
-                        //Saving current logged user;
-                        Session.make(activity, auth);
+                }
 
-                    }
+                @Override
+                public void onError(Throwable e) {
+                    if (e instanceof HttpException) {
+                        Response<?> response = ((HttpException) e).response();
 
-                    @Override
-                    public void onError(Throwable e) {
-                        if (e instanceof HttpException) {
-                            Response<?> response = ((HttpException) e).response();
+                        switch (response.code()){
 
-                            switch (response.code()){
-                                case 422:
-                                    Log.i(TAG,"Unprocessable Entity");
-                                    Log.i(TAG,"message = ".concat(response.message()));
+                            case 401:
+                                view.setPasswordError(getContext().getString(R.string.log_in_error_message_invalid_credentials));
+                                break;
 
-                                    break;
+                            case 500:
 
-                                case 401:
-                                    Log.i(TAG,"Unauthorized");
-                                    Log.i(TAG,"message = ".concat(response.message()));
-                                    break;
-
-                                case 500:
-
-                                    break;
-                            }
+                                break;
                         }
-
                     }
+                }
 
-                    @Override
-                    public void onComplete() {
+                @Override
+                public void onComplete() {
 
+                    Intent intent = new Intent(getContext(), HomeActivity.class);
+                    getContext().startActivity(intent);
+                }
+            });
+    }
 
+    @Override
+    public boolean validadeLogIn(String username, String password) {
 
-                        Log.i(TAG,"onComplete");
+        if(username.isEmpty()){
+            view.setEmailError(getContext().getString(R.string.log_in_error_message_is_empty_email));
+            return true;
+        }
 
-                        Intent intent = new Intent(activity, HomeActivity.class);
-                        activity.startActivity(intent);
-                    }
-                });
+        if(!android.util.Patterns.EMAIL_ADDRESS.matcher(username).matches()){
+            view.setEmailError(getContext().getString(R.string.log_in_error_message_invalid_email));
+            return true;
+        }
+
+        if(password.isEmpty()){
+            view.setPasswordError(getContext().getString(R.string.log_in_error_message_is_empty_password));
+            return true;
+        }
+        return false;
     }
 
 
+    @Override
+    public void onDestroy() {
+        view = null;
+        networkService = null;
+    }
+
+    @Override
+    public Context getContext() {
+        return view.getContext();
+    }
 }

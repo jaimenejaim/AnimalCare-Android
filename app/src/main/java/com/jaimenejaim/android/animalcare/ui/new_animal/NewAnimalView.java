@@ -7,8 +7,8 @@ import com.jaimenejaim.android.animalcare.ui.ViewImpl;
  */
 
 public interface NewAnimalView extends ViewImpl {
-    void setNameError();
-    void setBreedError();
-    void onSuccess();
+    void setNameError(String msg);
+    void setBreedError(String msg);
+    void finish();
 
 }

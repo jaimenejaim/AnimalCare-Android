@@ -1,12 +1,8 @@
 package com.jaimenejaim.android.animalcare.ui.splash;
 
-import android.app.Activity;
 import android.content.Context;
 import android.os.Handler;
 import android.os.Looper;
-import android.util.Log;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.jaimenejaim.android.animalcare.R;
 import com.jaimenejaim.android.animalcare.data.pref.Session;

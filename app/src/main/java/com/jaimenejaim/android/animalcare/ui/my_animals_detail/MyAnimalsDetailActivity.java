@@ -1,5 +1,6 @@
 package com.jaimenejaim.android.animalcare.ui.my_animals_detail;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -50,6 +51,11 @@ public class MyAnimalsDetailActivity extends BaseActivity implements MyAnimalsDe
     @Override
     public void intiPresenter() {
 
+    }
+
+    @Override
+    public Context getContext() {
+        return null;
     }
 
     @Override

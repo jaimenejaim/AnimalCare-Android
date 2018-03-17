@@ -24,6 +24,14 @@
     <string name="new_animal_edit_text_name_error">Precisamos saber o nome do seu animal</string>
     <string name="new_animal_breed_text_name_error">Precisamos saber a raça do seu animal</string>
 
+    <string name="log_in_error_message_is_empty_email">Precisamos saber seu email</string>
+    <string name="log_in_error_message_invalid_email">Esse email parecer não ser válido</string>
+    <string name="log_in_error_message_is_empty_password">Precisamos de sua senha</string>
+    <string name="log_in_error_message_invalid_credentials">Email e/ou senha não são válidos</string>
+
+
+
+
     <string name="splash_screen_text_view_loading">Carregando</string>
 
 

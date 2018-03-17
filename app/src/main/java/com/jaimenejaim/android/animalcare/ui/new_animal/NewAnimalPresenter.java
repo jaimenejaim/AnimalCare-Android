@@ -8,6 +8,7 @@ import com.jaimenejaim.android.animalcare.ui.PresenterImpl;
 
 public interface NewAnimalPresenter extends PresenterImpl {
 
-    void validate(String name, long breedId, String birthday);
+    void save(String name, long breedId, String birthday);
+    boolean validate(String name, long breedId, String birthday);
 
 }

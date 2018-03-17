@@ -8,6 +8,7 @@ import com.jaimenejaim.android.animalcare.ui.ViewImpl;
 
 public interface LogInViewImpl extends ViewImpl {
 
-    void logIn(String email, String password); //add parameters later
+    void setEmailError(String msg);
+    void setPasswordError(String msg);
 
 }

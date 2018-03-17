@@ -1,11 +1,9 @@
 package com.jaimenejaim.android.animalcare.ui.home;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
@@ -16,9 +14,6 @@ import com.jaimenejaim.android.animalcare.ui.home.adapters.HomeViewPagerAdapter;
 import com.jaimenejaim.android.animalcare.ui.messages.MessagesFragment;
 import com.jaimenejaim.android.animalcare.ui.my_animals.MyAnimalsFragment;
 import com.jaimenejaim.android.animalcare.ui.settings.SettingsFragment;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class HomeActivity extends AppCompatActivity implements HomeViewImpl {
 
@@ -102,5 +97,10 @@ public class HomeActivity extends AppCompatActivity implements HomeViewImpl {
     @Override
     public void intiPresenter() {
 
+    }
+
+    @Override
+    public Context getContext() {
+        return null;
     }
 }

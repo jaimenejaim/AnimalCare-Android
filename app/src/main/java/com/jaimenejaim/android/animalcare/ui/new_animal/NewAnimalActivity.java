@@ -1,7 +1,7 @@
 package com.jaimenejaim.android.animalcare.ui.new_animal;
 
+import android.content.Context;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
@@ -10,16 +10,15 @@ import android.widget.Spinner;
 
 import com.jaimenejaim.android.animalcare.R;
 import com.jaimenejaim.android.animalcare.ui.BaseActivity;
-import com.jaimenejaim.android.animalcare.utils.ActivityUtil;
 
-public class NewAnimalActivity extends BaseActivity implements NewAnimalView {
+public class NewAnimalActivity extends BaseActivity implements NewAnimalView, NewAnimalView.Activity {
 
     EditText editTextName, editTextBreed, editTextBirthDay;
     Spinner spinnerBreed;
     Button buttonSave;
     Toolbar toolbar;
 
-    NewAnimalPresenter presenter;
+    NewAnimalPresenterImpl presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +45,7 @@ public class NewAnimalActivity extends BaseActivity implements NewAnimalView {
     }
 
 
+    @Override
     public void setConfigToolbar(){
         setSupportActionBar(toolbar);
         toolbar.setNavigationIcon(getResources().getDrawable(R.drawable.ic_back));
@@ -64,7 +64,7 @@ public class NewAnimalActivity extends BaseActivity implements NewAnimalView {
         buttonSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                presenter.validate(editTextName.getText().toString(), 1, editTextBirthDay.getText().toString());
+                presenter.save(editTextName.getText().toString(), 1, editTextBirthDay.getText().toString());
             }
         });
     }
@@ -76,7 +76,12 @@ public class NewAnimalActivity extends BaseActivity implements NewAnimalView {
 
     @Override
     public void intiPresenter() {
-        presenter = new NewAnimalPresenterImpl(this, new NewAnimalInteractorImpl(this));
+        presenter = new NewAnimalPresenterImpl(this);
+    }
+
+    @Override
+    public Context getContext() {
+        return this;
     }
 
 
@@ -87,18 +92,13 @@ public class NewAnimalActivity extends BaseActivity implements NewAnimalView {
     }
 
     @Override
-    public void setNameError() {
-        editTextName.setError(getString(R.string.new_animal_edit_text_name_error));
+    public void setNameError(String msg) {
+        editTextName.setError(msg);
     }
 
     @Override
-    public void setBreedError() {
-        editTextBreed.setError(getString(R.string.new_animal_breed_text_name_error));
-    }
-
-    @Override
-    public void onSuccess() {
-        finish();
+    public void setBreedError(String msg) {
+        editTextBreed.setError(msg);
     }
 
     @Override

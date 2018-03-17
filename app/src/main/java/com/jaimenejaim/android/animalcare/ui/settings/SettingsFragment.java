@@ -43,10 +43,6 @@ public class SettingsFragment extends Fragment implements SettingsViewImpl {
 
     }
 
-    @Override
-    public void onBackPressed() {
-
-    }
 
     @Override
     public void intiPresenter() {
