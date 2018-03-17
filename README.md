@@ -20,6 +20,8 @@ The project itself is under development and programming for a private repository
   * [Retrofit 2](http://square.github.io/retrofit/)
   * [CircleImageView](https://github.com/hdodenhof/CircleImageView)
   * [Room API](https://developer.android.com/reference/android/arch/persistence/room/Room.html)
+  * [Hawk](https://github.com/orhanobut/hawk)
+  * [Butter Knife](http://jakewharton.github.io/butterknife/)
   
   ## Images
   
