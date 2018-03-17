@@ -62,13 +62,13 @@ public class LogInActivity extends FullScreenBaseActivity implements LogInViewIm
     }
 
     @Override
-    public void setEmailError(String msg) {
-        this.editTextEmail.setError(msg);
+    public EditText getEditTextEmail(){
+        return this.editTextEmail;
     }
 
     @Override
-    public void setPasswordError(String msg) {
-        this.editTextPassword.setError(msg);
+    public EditText getEditTextPassword(){
+        return this.editTextPassword;
     }
 
     @Override

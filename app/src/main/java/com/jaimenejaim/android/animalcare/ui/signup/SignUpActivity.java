@@ -50,7 +50,7 @@ public class SignUpActivity extends FullScreenBaseActivity implements SignUpVewI
         });
 
         editTextConfirmPassword.setOnKeyListener((view, keyCode, event) -> {
-            if ((event.getAction() == KeyEvent.ACTION_DOWN) g&& (keyCode == KeyEvent.KEYCODE_ENTER)){
+            if((event.getAction() == KeyEvent.ACTION_DOWN) && (keyCode == KeyEvent.KEYCODE_ENTER)){
                 return buttonSignUp.performClick();
             }
             return false;

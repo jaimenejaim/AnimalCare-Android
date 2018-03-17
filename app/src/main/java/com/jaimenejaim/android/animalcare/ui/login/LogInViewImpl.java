@@ -1,5 +1,7 @@
 package com.jaimenejaim.android.animalcare.ui.login;
 
+import android.widget.EditText;
+
 import com.jaimenejaim.android.animalcare.ui.ViewImpl;
 
 /**
@@ -8,7 +10,7 @@ import com.jaimenejaim.android.animalcare.ui.ViewImpl;
 
 public interface LogInViewImpl extends ViewImpl {
 
-    void setEmailError(String msg);
-    void setPasswordError(String msg);
+    EditText getEditTextEmail();
+    EditText getEditTextPassword();
 
 }

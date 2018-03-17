@@ -2,6 +2,7 @@ package com.jaimenejaim.android.animalcare.ui.login;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Patterns;
 
 import com.jaimenejaim.android.animalcare.R;
 import com.jaimenejaim.android.animalcare.data.network.api.Network;
@@ -42,8 +43,7 @@ public class LogInPresenter implements LogInPresenterImpl {
     public void logIn(String email, String password){
 
 
-        if(validadeLogIn(email,password))
-            return;
+        if(validadeLogIn(email,password)) return;
 
 
         networkService.logIn(email,password)
@@ -69,7 +69,7 @@ public class LogInPresenter implements LogInPresenterImpl {
                         switch (response.code()){
 
                             case 401:
-                                view.setPasswordError(getContext().getString(R.string.log_in_error_message_invalid_credentials));
+                                view.getEditTextPassword().setError(getContext().getString(R.string.log_in_error_message_invalid_credentials));
                                 break;
 
                             case 500:
@@ -93,17 +93,17 @@ public class LogInPresenter implements LogInPresenterImpl {
     public boolean validadeLogIn(String username, String password) {
 
         if(username.isEmpty()){
-            view.setEmailError(getContext().getString(R.string.log_in_error_message_is_empty_email));
+            view.getEditTextEmail().setError(getContext().getString(R.string.log_in_error_message_is_empty_email));
             return true;
         }
 
-        if(!android.util.Patterns.EMAIL_ADDRESS.matcher(username).matches()){
-            view.setEmailError(getContext().getString(R.string.log_in_error_message_invalid_email));
+        if(!Patterns.EMAIL_ADDRESS.matcher(username).matches()){
+            view.getEditTextEmail().setError(getContext().getString(R.string.log_in_error_message_invalid_email));
             return true;
         }
 
         if(password.isEmpty()){
-            view.setPasswordError(getContext().getString(R.string.log_in_error_message_is_empty_password));
+            view.getEditTextPassword().setError(getContext().getString(R.string.log_in_error_message_is_empty_password));
             return true;
         }
         return false;
