@@ -32,7 +32,11 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ui.my_animals_detail.MyAnimalsDetailActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ui.signup.SignUpActivity"
+            android:label="@string/title_activity_sign_up"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

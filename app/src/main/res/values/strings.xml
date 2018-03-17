@@ -2,7 +2,7 @@
     <string name="app_name">AnimalCare</string>
     <string name="action_settings">Settings</string>
     <string name="button_enter">ENTRAR</string>
-    <string name="edit_text_password">Password</string>
+    <string name="edit_text_password">Senha</string>
     <string name="edit_text_email">E-mail</string>
     <string name="title_activity_home">HomeActivity</string>
 
@@ -24,16 +24,23 @@
     <string name="new_animal_edit_text_name_error">Precisamos saber o nome do seu animal</string>
     <string name="new_animal_breed_text_name_error">Precisamos saber a raça do seu animal</string>
 
-    <string name="log_in_error_message_is_empty_email">Precisamos saber seu email</string>
-    <string name="log_in_error_message_invalid_email">Esse email parecer não ser válido</string>
+    <string name="log_in_error_message_is_empty_email">Precisamos saber o seu email</string>
+    <string name="log_in_error_message_invalid_email">Esse email não parece ser válido</string>
     <string name="log_in_error_message_is_empty_password">Precisamos de sua senha</string>
     <string name="log_in_error_message_invalid_credentials">Email e/ou senha não são válidos</string>
 
+    <string name="sign_up_error_message_is_empty_name">Precisamos saber o seu nome</string>
+    <string name="sign_up_error_message_invalid_email">Esse email não parece ser válido</string>
+    <string name="sign_up_error_message_is_empty_email">Precisamos saber o seu email</string>
+    <string name="sign_up_error_message_is_empty_password">Precisamos de sua senha</string>
+    <string name="sign_up_error_message_is_empty_confirm_password">Precisamos que digite novamente sua senha</string>
+    <string name="sign_up_error_message_does_not_match_password">Senha não confere</string>
 
 
 
     <string name="splash_screen_text_view_loading">Carregando</string>
-
+    <string name="title_activity_sign_up">SignUpActivity</string>
+    <string name="activity_log_in_text_view_sign_up">Novo por aqui ? Regisre-se</string>
 
 
 </resources>

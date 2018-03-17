@@ -1,11 +1,9 @@
 package com.jaimenejaim.android.animalcare.ui;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 
-import com.jaimenejaim.android.animalcare.R;
 import com.jaimenejaim.android.animalcare.utils.ActivityUtil;
 
 /**
@@ -19,6 +17,10 @@ public class BaseActivity extends AppCompatActivity {
     public void finish() {
         super.finish();
         ActivityUtil.overridePendingTransitionExit(this);
+    }
+
+    public void finish(String arg) {
+        super.finish();
     }
 
     @Override

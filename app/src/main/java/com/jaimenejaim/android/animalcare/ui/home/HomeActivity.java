@@ -101,4 +101,9 @@ public class HomeActivity extends BaseActivity implements HomeViewImpl {
     public Context getContext() {
         return this;
     }
+
+    @Override
+    public void finish() {
+        super.finish("arg");
+    }
 }

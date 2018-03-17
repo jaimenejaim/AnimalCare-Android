@@ -161,4 +161,9 @@ public class MyAnimalsFragment extends BaseFragment implements MyAnimalsViewImpl
     public void intiPresenter() {
 
     }
+
+    @Override
+    public void finish() {
+        getActivity().finish();
+    }
 }

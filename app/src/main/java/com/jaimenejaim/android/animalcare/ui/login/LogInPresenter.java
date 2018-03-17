@@ -84,6 +84,7 @@ public class LogInPresenter implements LogInPresenterImpl {
 
                     Intent intent = new Intent(getContext(), HomeActivity.class);
                     getContext().startActivity(intent);
+                    view.finish();
                 }
             });
     }

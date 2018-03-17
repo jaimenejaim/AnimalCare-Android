@@ -12,6 +12,7 @@ public interface ViewImpl {
     void setListeners();
     void intiPresenter();
     Context getContext();
+    void finish();
 
     interface Activity {
         void setConfigToolbar();

@@ -1,15 +1,18 @@
 package com.jaimenejaim.android.animalcare.ui.login;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.jaimenejaim.android.animalcare.R;
 import com.jaimenejaim.android.animalcare.ui.FullScreenBaseActivity;
+import com.jaimenejaim.android.animalcare.ui.signup.SignUpActivity;
 
 public class LogInActivity extends FullScreenBaseActivity implements LogInViewImpl {
 
@@ -18,7 +21,7 @@ public class LogInActivity extends FullScreenBaseActivity implements LogInViewIm
 
     EditText editTextEmail, editTextPassword;
     Button buttonLogin;
-
+    TextView textViewSignUp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +40,7 @@ public class LogInActivity extends FullScreenBaseActivity implements LogInViewIm
         buttonLogin = view.findViewById(R.id.buttonLogin);
         editTextEmail = view.findViewById(R.id.editTextEmail);
         editTextPassword = view.findViewById(R.id.editTextPassword);
-
+        textViewSignUp = view.findViewById(R.id.textViewSignUp);
     }
 
     @Override
@@ -50,6 +53,11 @@ public class LogInActivity extends FullScreenBaseActivity implements LogInViewIm
                 return buttonLogin.performClick();
             }
             return false;
+        });
+
+        textViewSignUp.setOnClickListener(view -> {
+            Intent intent = new Intent(LogInActivity.this, SignUpActivity.class);
+            startActivity(intent);
         });
     }
 
@@ -76,5 +84,10 @@ public class LogInActivity extends FullScreenBaseActivity implements LogInViewIm
     @Override
     public Context getContext() {
         return this;
+    }
+
+    @Override
+    public void finish(){
+        super.finish();
     }
 }

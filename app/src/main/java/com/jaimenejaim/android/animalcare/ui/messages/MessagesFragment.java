@@ -46,4 +46,9 @@ public class MessagesFragment extends Fragment implements MessagesViewImpl {
     public void intiPresenter() {
 
     }
+
+    @Override
+    public void finish() {
+        getActivity().finish();
+    }
 }
