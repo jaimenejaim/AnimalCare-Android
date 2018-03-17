@@ -54,19 +54,10 @@ public class NewAnimalActivity extends BaseActivity implements NewAnimalView, Ne
     @Override
     public void setListeners() {
 
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                NewAnimalActivity.super.onBackPressed();
-            }
-        });
+        toolbar.setNavigationOnClickListener(v -> NewAnimalActivity.super.onBackPressed());
 
-        buttonSave.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                presenter.save(editTextName.getText().toString(), 1, editTextBirthDay.getText().toString());
-            }
-        });
+        buttonSave.setOnClickListener(view ->
+                presenter.save(editTextName.getText().toString(), 1, editTextBirthDay.getText().toString()));
     }
 
     @Override

@@ -26,22 +26,18 @@ public class NewAnimalPresenterImpl implements NewAnimalPresenter {
 
         if(validate(name,breedId,birthday)) return;
 
+        new Thread(() -> {
+            db.animalDao().insert(new Animal(name,birthday,breedId));
+            view.finish();
+            try {
 
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
+                this.finalize();
 
-                db.animalDao().insert(new Animal(name,birthday,breedId));
-                view.finish();
-                try {
-
-                    this.finalize();
-
-                } catch (Throwable throwable) {
-                    throwable.printStackTrace();
-                }
+            } catch (Throwable throwable) {
+                throwable.printStackTrace();
             }
         }).start();
+
 
     }
 

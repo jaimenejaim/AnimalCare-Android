@@ -27,12 +27,8 @@ public class SplashScreenPresenterImpl implements SplashScreenPresenter {
         startRunnableBlinkOfEyes();
         startRunnableLoadingDots();
 
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                verifySession();
-            }
-        }, 2000);
+        new Handler().postDelayed(() ->
+                verifySession(), 2000);
     }
 
 

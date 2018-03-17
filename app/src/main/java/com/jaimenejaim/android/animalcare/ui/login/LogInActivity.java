@@ -42,21 +42,14 @@ public class LogInActivity extends FullScreenBaseActivity implements LogInViewIm
 
     @Override
     public void setListeners() {
-        buttonLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                presenter.logIn(editTextEmail.getText().toString(),editTextPassword.getText().toString());
-            }
-        });
+        buttonLogin.setOnClickListener(view ->
+                presenter.logIn(editTextEmail.getText().toString(),editTextPassword.getText().toString()));
 
-        editTextPassword.setOnKeyListener(new View.OnKeyListener() {
-            @Override
-            public boolean onKey(View view, int keyCode, KeyEvent event) {
-                if ((event.getAction() == KeyEvent.ACTION_DOWN) && (keyCode == KeyEvent.KEYCODE_ENTER)) {
-                    return buttonLogin.performClick();
-                }
-                return false;
+        editTextPassword.setOnKeyListener((view, keyCode, event) -> {
+            if ((event.getAction() == KeyEvent.ACTION_DOWN) && (keyCode == KeyEvent.KEYCODE_ENTER)) {
+                return buttonLogin.performClick();
             }
+            return false;
         });
     }
 
