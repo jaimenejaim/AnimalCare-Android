@@ -7,4 +7,5 @@ import com.jaimenejaim.android.animalcare.ui.PresenterImpl;
  */
 
 public interface SettingsPresenterImpl extends PresenterImpl {
+    void logOut();
 }

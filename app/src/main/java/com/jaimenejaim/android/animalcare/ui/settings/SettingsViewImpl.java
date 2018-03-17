@@ -7,4 +7,7 @@ import com.jaimenejaim.android.animalcare.ui.ViewImpl;
  */
 
 public interface SettingsViewImpl extends ViewImpl {
+
+    void finish();
+
 }

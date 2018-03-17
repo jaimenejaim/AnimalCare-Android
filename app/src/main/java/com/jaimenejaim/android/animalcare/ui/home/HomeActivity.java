@@ -5,17 +5,17 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
 
 import com.jaimenejaim.android.animalcare.R;
+import com.jaimenejaim.android.animalcare.ui.BaseActivity;
 import com.jaimenejaim.android.animalcare.ui.home.adapters.HomeViewPagerAdapter;
 import com.jaimenejaim.android.animalcare.ui.messages.MessagesFragment;
 import com.jaimenejaim.android.animalcare.ui.my_animals.MyAnimalsFragment;
 import com.jaimenejaim.android.animalcare.ui.settings.SettingsFragment;
 
-public class HomeActivity extends AppCompatActivity implements HomeViewImpl {
+public class HomeActivity extends BaseActivity implements HomeViewImpl {
 
     private HomePresenter presenter;
 
