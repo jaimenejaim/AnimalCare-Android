@@ -28,8 +28,8 @@
             android:id="@+id/textViewLoading"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Carregando..."
-            android:textColor="@color/white"
+            android:text="@string/splash_screen_loading_step_three"
+            android:textColor="@color/colorPrimaryDark"
             android:textStyle="bold"/>
 
 

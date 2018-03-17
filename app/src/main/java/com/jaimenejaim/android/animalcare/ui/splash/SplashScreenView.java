@@ -10,11 +10,10 @@ import com.jaimenejaim.android.animalcare.ui.ViewImpl;
  */
 
 public interface SplashScreenView extends ViewImpl {
-    void nofityDataCharged(String msg);
     void openActivity(Object activity);
-    void setImageResource(int resource);
     TextView getTextViewLoading();
     ImageView getImageViewLoading();
     void onDestroy();
+    void finish();
 
 }

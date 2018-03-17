@@ -53,6 +53,10 @@ public class SplashScreenActivity extends FullScreenBaseActivity implements Spla
         presenter = new SplashScreenPresenterImpl(this);
     }
 
+    @Override
+    public Context getContext() {
+        return this;
+    }
 
 
     @Override
@@ -61,28 +65,11 @@ public class SplashScreenActivity extends FullScreenBaseActivity implements Spla
         super.onDestroy();
     }
 
-    @Override
-    public void nofityDataCharged(String msg) {
-        textViewLoading.setText(msg);
-    }
-
 
     @Override
     public void openActivity(Object activity) {
         Intent intent = new Intent(SplashScreenActivity.this, activity.getClass());
         startActivity(intent);
-        finish();
-    }
-
-
-    @Override
-    public void setImageResource(int resource) {
-        imageViewLogo.setImageResource(resource);
-    }
-
-    @Override
-    public Context getContext() {
-        return this;
     }
 
     @Override
@@ -95,6 +82,10 @@ public class SplashScreenActivity extends FullScreenBaseActivity implements Spla
         return this.imageViewLogo;
     }
 
+    @Override
+    public void finish(){
+        super.finish();
+    }
 
 
 

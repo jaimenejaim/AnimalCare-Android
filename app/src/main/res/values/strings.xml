@@ -38,9 +38,12 @@
 
 
 
-    <string name="splash_screen_text_view_loading">Carregando</string>
     <string name="title_activity_sign_up">SignUpActivity</string>
     <string name="activity_log_in_text_view_sign_up">Novo por aqui ? Regisre-se</string>
+     <string name="splash_screen_loading_step_zero">Carregando</string>
+      <string name="splash_screen_loading_step_one">Carregando.</string>
+      <string name="splash_screen_loading_step_two">Carregando..</string>
+    <string name="splash_screen_loading_step_three">Carregando...</string>
 
 
 </resources>
