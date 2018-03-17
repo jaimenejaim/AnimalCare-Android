@@ -2,10 +2,8 @@ package com.jaimenejaim.android.animalcare.ui.home;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.view.ViewPager;
-import android.view.MenuItem;
 import android.view.View;
 
 import com.jaimenejaim.android.animalcare.R;
@@ -57,28 +55,27 @@ public class HomeActivity extends BaseActivity implements HomeViewImpl {
             public void onPageScrollStateChanged(int state) {}
         });
 
-        bottomNavigationView.setOnNavigationItemSelectedListener(
-            new BottomNavigationView.OnNavigationItemSelectedListener() {
-                @Override
-                public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                    switch (item.getItemId()) {
-                        case R.id.bottombaritem_settings:
-                            viewPager.setCurrentItem(0);
-                            return true;
-                        case R.id.bottombaritem_animals:
-                            viewPager.setCurrentItem(1);
-                            return true;
-                        case R.id.bottombaritem_message:
-                            viewPager.setCurrentItem(2);
-                            return true;
+        bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
 
-                    }
-                    return false;
-                }
+
+            switch (item.getItemId()) {
+                case R.id.bottombaritem_settings:
+                    viewPager.setCurrentItem(0);
+                    return true;
+                case R.id.bottombaritem_animals:
+                    viewPager.setCurrentItem(1);
+                    return true;
+                case R.id.bottombaritem_message:
+                    viewPager.setCurrentItem(2);
+                    return true;
+
             }
-        );
+            return false;
+        });
 
+        viewPager.postDelayed(() -> viewPager.setCurrentItem(1, false), 2000);
     }
+
 
 
 
