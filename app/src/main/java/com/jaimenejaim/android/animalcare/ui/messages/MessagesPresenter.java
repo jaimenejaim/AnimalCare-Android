@@ -8,6 +8,12 @@ import android.content.Context;
 
 public class MessagesPresenter implements MessagesPresenterImpl {
 
+    private MessagesViewImpl view;
+
+    public MessagesPresenter(MessagesViewImpl view){
+        this.view = view;
+    }
+
     @Override
     public void onDestroy() {
 

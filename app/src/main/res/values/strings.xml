@@ -37,7 +37,6 @@
     <string name="sign_up_error_message_does_not_match_password">Senha não confere</string>
 
 
-
     <string name="title_activity_sign_up">SignUpActivity</string>
     <string name="activity_log_in_text_view_sign_up">Novo por aqui ? Regisre-se</string>
     <string name="splash_screen_loading_step_zero">Carregando</string>
@@ -52,6 +51,10 @@
     <string name="settings_menu_payments">Planos e pagamentos</string>
     <string name="settings_menu_rating">Minhas avaliações</string>
     <string name="settings_menu_instructions">Instruções</string>
+
+
+    <string name="messages_pager_adapter_chat">Chat</string>
+    <string name="messages_pager_adapter_notifications">Avisos</string>
 
 
 </resources>
