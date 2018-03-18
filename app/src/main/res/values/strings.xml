@@ -40,10 +40,18 @@
 
     <string name="title_activity_sign_up">SignUpActivity</string>
     <string name="activity_log_in_text_view_sign_up">Novo por aqui ? Regisre-se</string>
-     <string name="splash_screen_loading_step_zero">Carregando</string>
-      <string name="splash_screen_loading_step_one">Carregando.</string>
-      <string name="splash_screen_loading_step_two">Carregando..</string>
+    <string name="splash_screen_loading_step_zero">Carregando</string>
+    <string name="splash_screen_loading_step_one">Carregando.</string>
+    <string name="splash_screen_loading_step_two">Carregando..</string>
     <string name="splash_screen_loading_step_three">Carregando...</string>
+
+
+    <string name="settings_menu_account">Minha conta</string>
+    <string name="settings_menu_address">Endereço</string>
+    <string name="settings_menu_care">Adote um amigo</string>
+    <string name="settings_menu_payments">Planos e pagamentos</string>
+    <string name="settings_menu_rating">Minhas avaliações</string>
+    <string name="settings_menu_instructions">Instruções</string>
 
 
 </resources>

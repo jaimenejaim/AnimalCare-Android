@@ -3,6 +3,9 @@ package com.jaimenejaim.android.animalcare.ui.settings;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +15,8 @@ import android.widget.Button;
 import com.jaimenejaim.android.animalcare.R;
 import com.jaimenejaim.android.animalcare.ui.BaseFragment;
 import com.jaimenejaim.android.animalcare.ui.login.LogInActivity;
+import com.jaimenejaim.android.animalcare.ui.my_animals.others.DividerItemDecotation;
+import com.jaimenejaim.android.animalcare.ui.settings.adapters.SettingsAdapter;
 
 
 public class SettingsFragment extends BaseFragment implements SettingsViewImpl {
@@ -22,19 +27,21 @@ public class SettingsFragment extends BaseFragment implements SettingsViewImpl {
         super.onCreate(savedInstanceState);
     }
 
-    RecyclerView mRecyclerView;
-    Button buttonLogOut;
-    SettingsPresenter presenter;
-    Context context;
+    private RecyclerView mRecyclerView;
+    private SettingsAdapter mAdapter;
+    private Button buttonLogOut;
+    private SettingsPresenter presenter;
+    private Context context;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_settings, container, false);
         context = container.getContext();
 
         intiPresenter();
         initComponents(view);
+        configRecyclerView();
         setListeners();
 
         return view;
@@ -51,6 +58,10 @@ public class SettingsFragment extends BaseFragment implements SettingsViewImpl {
     public void setListeners() {
         buttonLogOut.setOnClickListener(view -> {
             presenter.logOut();
+        });
+
+        mAdapter.setOnItemClickListener(item -> {
+            presenter.onItemClick(item);
         });
     }
 
@@ -78,5 +89,15 @@ public class SettingsFragment extends BaseFragment implements SettingsViewImpl {
     public void onDestroy() {
         presenter.onDestroy();
         super.onDestroy();
+    }
+
+
+    public void configRecyclerView(){
+
+        mAdapter = new SettingsAdapter(presenter.loadSettings());
+        mRecyclerView.addItemDecoration(new DividerItemDecotation(getContext()));
+        mRecyclerView.setAdapter(mAdapter);
+        mRecyclerView.setItemAnimator(new DefaultItemAnimator());
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
     }
 }

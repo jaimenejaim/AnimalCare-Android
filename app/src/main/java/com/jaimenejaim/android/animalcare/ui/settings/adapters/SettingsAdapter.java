@@ -6,11 +6,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.jaimenejaim.android.animalcare.R;
-import com.jaimenejaim.android.animalcare.data.persistence.entity.Animal;
+import com.jaimenejaim.android.animalcare.data.persistence.entity.Settings;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -22,7 +21,7 @@ import java.util.List;
 public class SettingsAdapter extends RecyclerView.Adapter<SettingsAdapter.ViewHolder> {
 
     private OnItemClickListener listener;
-    private List<Animal> animals;
+    private List<Settings> settings;
 
 
     public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
@@ -30,8 +29,8 @@ public class SettingsAdapter extends RecyclerView.Adapter<SettingsAdapter.ViewHo
     }
 
 
-    public SettingsAdapter(List<Animal> animals) {
-        this.animals = animals;
+    public SettingsAdapter(List<Settings> settings) {
+        this.settings = settings;
     }
 
 
@@ -44,46 +43,60 @@ public class SettingsAdapter extends RecyclerView.Adapter<SettingsAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.bind(animals.get(position));
+        Settings setting = settings.get(position);
+
+        switch (setting.getSettingsEnum()){
+
+            case ACCOUNT:
+                Picasso.get().load(R.drawable.ic_account).into(holder.imageViewIcon);
+                break;
+            case ADOPT:
+                Picasso.get().load(R.drawable.ic_care).into(holder.imageViewIcon);
+                break;
+            case ADDRESS:
+                Picasso.get().load(R.drawable.ic_address).into(holder.imageViewIcon);
+                break;
+            case PAYMENTS:
+                Picasso.get().load(R.drawable.ic_creditcard).into(holder.imageViewIcon);
+                break;
+            case EVALUATION:
+                Picasso.get().load(R.drawable.ic_rating).into(holder.imageViewIcon);
+                break;
+            case INSTRUCTIONS:
+                Picasso.get().load(R.drawable.ic_info).into(holder.imageViewIcon);
+                break;
+
+        }
+
+        holder.textViewTitle.setText(setting.getTitle());
+
+
+
+        holder.itemView.setOnClickListener(v -> {
+            if (listener != null) listener.onItemClick(setting);
+        });
     }
 
     @Override
     public int getItemCount() {
-        return animals.size();
+        return settings.size();
     }
 
 
     class ViewHolder extends RecyclerView.ViewHolder {
 
-        ImageView _icon;
-        TextView _title;
-        LinearLayout _enter;
+        ImageView imageViewIcon;
+        TextView textViewTitle;
 
         public ViewHolder(View itemView) {
             super(itemView);
-            _icon = itemView.findViewById(R.id.icon);
-            _title = itemView.findViewById(R.id.title);
-            _enter = itemView.findViewById(R.id.linearLayoutEnter);
+            imageViewIcon = itemView.findViewById(R.id.imageViewIcon);
+            textViewTitle = itemView.findViewById(R.id.textViewTitle);
         }
 
-        public void bind(final Animal item) {
-
-            if (_icon != null) {
-                Picasso.get().load("http://res.cloudinary.com/drfcfazt5/image/upload/v1521046642/placeholder_dog_tehfax.jpg").into(_icon);
-                _title.setText(item.getName());
-
-                itemView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        if (listener != null) listener.onItemClick(item);
-                    }
-                });
-            }
-
-        }
     }
 
     public interface OnItemClickListener {
-        void onItemClick(Animal item);
+        void onItemClick(Settings item);
     }
 }

@@ -6,7 +6,7 @@
     android:layout_height="wrap_content">
 
         <ImageView
-            android:id="@+id/icon"
+            android:id="@+id/imageViewIcon"
             android:tint="@color/colorAccent"
             android:layout_marginBottom="10dp"
             android:layout_marginTop="10dp"
@@ -17,19 +17,20 @@
             android:src="@drawable/ic_creditcard"/>
 
         <TextView
-            android:id="@+id/title"
+            android:id="@+id/textViewTitle"
             android:layout_marginBottom="10dp"
             android:layout_marginTop="10dp"
             android:layout_centerInParent="true"
+            android:maxLines="1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Meio de pagamento"
+            android:text="description"
             android:layout_marginLeft="15dp"
             android:singleLine="true"/>
 
 
     <LinearLayout
-        android:id="@+id/linearLayoutEnter"
+        android:layout_centerVertical="true"
         android:layout_alignParentEnd="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
