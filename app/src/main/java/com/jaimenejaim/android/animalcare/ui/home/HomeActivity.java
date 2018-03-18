@@ -11,6 +11,7 @@ import com.jaimenejaim.android.animalcare.ui.BaseActivity;
 import com.jaimenejaim.android.animalcare.ui.home.adapters.HomeViewPagerAdapter;
 import com.jaimenejaim.android.animalcare.ui.messages.MessagesFragment;
 import com.jaimenejaim.android.animalcare.ui.my_animals.MyAnimalsFragment;
+import com.jaimenejaim.android.animalcare.ui.search.SearchFragment;
 import com.jaimenejaim.android.animalcare.ui.settings.SettingsFragment;
 
 public class HomeActivity extends BaseActivity implements HomeViewImpl {
@@ -65,8 +66,11 @@ public class HomeActivity extends BaseActivity implements HomeViewImpl {
                 case R.id.bottombaritem_animals:
                     viewPager.setCurrentItem(1);
                     return true;
-                case R.id.bottombaritem_message:
+                case R.id.bottombaritem_search:
                     viewPager.setCurrentItem(2);
+                    return true;
+                case R.id.bottombaritem_message:
+                    viewPager.setCurrentItem(3);
                     return true;
 
             }
@@ -83,6 +87,7 @@ public class HomeActivity extends BaseActivity implements HomeViewImpl {
         HomeViewPagerAdapter adapter = new HomeViewPagerAdapter(getSupportFragmentManager());
         adapter.addFrag(new SettingsFragment(), "settings");
         adapter.addFrag(new MyAnimalsFragment(), "my_animals");
+        adapter.addFrag(new SearchFragment(), "search");
         adapter.addFrag(new MessagesFragment(), "messages");
         viewPager.setAdapter(adapter);
     }
