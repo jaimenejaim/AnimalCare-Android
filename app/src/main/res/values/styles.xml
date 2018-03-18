@@ -24,4 +24,10 @@
         <item name="colorControlHighlight">@color/white</item>
     </style>
 
+    <style name="CustomTabTextSize" parent="TextAppearance.Design.Tab">
+        <item name="textAllCaps">false</item>
+        <item name="android:textSize">13sp</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+
 </resources>

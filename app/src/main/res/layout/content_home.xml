@@ -23,7 +23,8 @@
         app:itemIconTint="@color/white"
         app:itemTextColor="@color/white"
         app:menu="@menu/bottom_bar"
-        android:id="@+id/bottom_nav" />
+        android:id="@+id/bottom_nav"
+        app:elevation="0dp"/>
 
 
 </RelativeLayout>

@@ -13,7 +13,8 @@
         android:background="@color/colorPrimary"
         app:tabGravity="fill"
         app:tabTextColor="@color/white"
-        app:tabSelectedTextColor="@color/white"/>
+        app:tabSelectedTextColor="@color/white"
+        app:tabTextAppearance="@style/CustomTabTextSize"/>
 
     <com.jaimenejaim.android.animalcare.ui.messages.others.ViewPagerWithOutScroll
         android:id="@+id/viewpager"
