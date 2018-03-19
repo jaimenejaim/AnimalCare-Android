@@ -1,4 +1,4 @@
-package com.jaimenejaim.android.animalcare.ui.login;
+package com.jaimenejaim.android.animalcare.ui.sign_in;
 
 import android.content.Context;
 import android.content.Intent;
@@ -23,13 +23,13 @@ import retrofit2.Response;
  * Created by jaimenejaim on 09/03/2018.
  */
 
-public class LogInPresenter implements LogInPresenterImpl {
+public class SignInPresenter implements SignInPresenterImpl {
 
 
-    private LogInViewImpl view;
+    private SignInViewImpl view;
     private Service networkService;
 
-    public LogInPresenter(LogInViewImpl view){
+    public SignInPresenter(SignInViewImpl view){
         this.view = view;
         networkService = Network.getAPIService();
 

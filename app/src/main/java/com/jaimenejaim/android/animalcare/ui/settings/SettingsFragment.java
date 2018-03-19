@@ -14,7 +14,7 @@ import android.widget.Button;
 
 import com.jaimenejaim.android.animalcare.R;
 import com.jaimenejaim.android.animalcare.ui.BaseFragment;
-import com.jaimenejaim.android.animalcare.ui.login.LogInActivity;
+import com.jaimenejaim.android.animalcare.ui.sign_in.SignInActivity;
 import com.jaimenejaim.android.animalcare.ui.my_animals.others.DividerItemDecotation;
 import com.jaimenejaim.android.animalcare.ui.settings.adapters.SettingsAdapter;
 
@@ -79,7 +79,7 @@ public class SettingsFragment extends BaseFragment implements SettingsViewImpl {
 
     @Override
     public void finish(){
-        Intent intent = new Intent(getActivity(), LogInActivity.class);
+        Intent intent = new Intent(getActivity(), SignInActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         getActivity().finish();
         startActivity(intent);

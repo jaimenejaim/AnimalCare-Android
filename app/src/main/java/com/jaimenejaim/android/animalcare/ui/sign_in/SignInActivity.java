@@ -1,4 +1,4 @@
-package com.jaimenejaim.android.animalcare.ui.login;
+package com.jaimenejaim.android.animalcare.ui.sign_in;
 
 import android.content.Context;
 import android.content.Intent;
@@ -14,10 +14,10 @@ import com.jaimenejaim.android.animalcare.R;
 import com.jaimenejaim.android.animalcare.ui.FullScreenBaseActivity;
 import com.jaimenejaim.android.animalcare.ui.signup.SignUpActivity;
 
-public class LogInActivity extends FullScreenBaseActivity implements LogInViewImpl {
+public class SignInActivity extends FullScreenBaseActivity implements SignInViewImpl {
 
 
-    LogInPresenter presenter;
+    SignInPresenter presenter;
 
     EditText editTextEmail, editTextPassword;
     Button buttonLogin;
@@ -27,7 +27,7 @@ public class LogInActivity extends FullScreenBaseActivity implements LogInViewIm
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
-        setContentView(R.layout.activity_log_in);
+        setContentView(R.layout.activity_sign_in);
 
         intiPresenter();
         initComponents(findViewById(android.R.id.content));
@@ -56,7 +56,7 @@ public class LogInActivity extends FullScreenBaseActivity implements LogInViewIm
         });
 
         textViewSignUp.setOnClickListener(view -> {
-            Intent intent = new Intent(LogInActivity.this, SignUpActivity.class);
+            Intent intent = new Intent(SignInActivity.this, SignUpActivity.class);
             startActivity(intent);
         });
     }
@@ -78,7 +78,7 @@ public class LogInActivity extends FullScreenBaseActivity implements LogInViewIm
 
     @Override
     public void intiPresenter() {
-        presenter = new LogInPresenter(this);
+        presenter = new SignInPresenter(this);
     }
 
     @Override

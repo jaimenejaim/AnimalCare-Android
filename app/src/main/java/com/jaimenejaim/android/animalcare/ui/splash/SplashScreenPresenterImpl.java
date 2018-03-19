@@ -6,7 +6,7 @@ import android.os.Handler;
 import com.jaimenejaim.android.animalcare.R;
 import com.jaimenejaim.android.animalcare.data.pref.Session;
 import com.jaimenejaim.android.animalcare.ui.home.HomeActivity;
-import com.jaimenejaim.android.animalcare.ui.login.LogInActivity;
+import com.jaimenejaim.android.animalcare.ui.sign_in.SignInActivity;
 
 /**
  * Created by jaimenejaim on 09/03/2018.
@@ -116,7 +116,7 @@ public class SplashScreenPresenterImpl implements SplashScreenPresenter {
     @Override
     public void verifySession() {
         if(Session.get(getContext()) == null)
-            openActivity(new LogInActivity());
+            openActivity(new SignInActivity());
         else
             openActivity(new HomeActivity());
 
