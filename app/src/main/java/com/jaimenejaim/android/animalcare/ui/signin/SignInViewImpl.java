@@ -1,4 +1,4 @@
-package com.jaimenejaim.android.animalcare.ui.sign_in;
+package com.jaimenejaim.android.animalcare.ui.signin;
 
 import android.widget.EditText;
 

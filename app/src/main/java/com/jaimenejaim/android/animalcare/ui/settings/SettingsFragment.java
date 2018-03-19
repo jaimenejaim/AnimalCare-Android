@@ -14,7 +14,7 @@ import android.widget.Button;
 
 import com.jaimenejaim.android.animalcare.R;
 import com.jaimenejaim.android.animalcare.ui.BaseFragment;
-import com.jaimenejaim.android.animalcare.ui.sign_in.SignInActivity;
+import com.jaimenejaim.android.animalcare.ui.signin.SignInActivity;
 import com.jaimenejaim.android.animalcare.ui.my_animals.others.DividerItemDecotation;
 import com.jaimenejaim.android.animalcare.ui.settings.adapters.SettingsAdapter;
 

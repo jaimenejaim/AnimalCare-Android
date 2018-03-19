@@ -25,7 +25,7 @@
             android:name=".ui.home.HomeActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".ui.sign_in.SignInActivity"
+            android:name=".ui.signin.SignInActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ui.new_animal.NewAnimalActivity"

@@ -6,7 +6,7 @@ import android.os.Handler;
 import com.jaimenejaim.android.animalcare.R;
 import com.jaimenejaim.android.animalcare.data.pref.Session;
 import com.jaimenejaim.android.animalcare.ui.home.HomeActivity;
-import com.jaimenejaim.android.animalcare.ui.sign_in.SignInActivity;
+import com.jaimenejaim.android.animalcare.ui.signin.SignInActivity;
 
 /**
  * Created by jaimenejaim on 09/03/2018.
