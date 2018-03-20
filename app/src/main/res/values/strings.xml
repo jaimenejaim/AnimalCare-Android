@@ -55,6 +55,11 @@
 
     <string name="messages_pager_adapter_chat">Chat</string>
     <string name="messages_pager_adapter_notifications">Avisos</string>
+    <string name="title_activity_my_account">MyAccountActivity</string>
+    <string name="title_activity_plans_payments">PlansPaymentsActivity</string>
+    <string name="title_activity_evaluation">EvaluationActivity</string>
+    <string name="title_activity_instructions">InstructionsActivity</string>
+    <string name="title_activity_friend_care">FriendCareActivity</string>
 
 
 </resources>

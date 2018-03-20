@@ -36,6 +36,26 @@
         <activity
             android:name=".ui.signup.SignUpActivity"
             android:label="@string/title_activity_sign_up"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ui.my_account.MyAccountActivity"
+            android:label="@string/title_activity_my_account"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ui.plans_payments.PlansPaymentsActivity"
+            android:label="@string/title_activity_plans_payments"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ui.evaluation.EvaluationActivity"
+            android:label="@string/title_activity_evaluation"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ui.instructions.InstructionsActivity"
+            android:label="@string/title_activity_instructions"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ui.friend_care.FriendCareActivity"
+            android:label="@string/title_activity_friend_care"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

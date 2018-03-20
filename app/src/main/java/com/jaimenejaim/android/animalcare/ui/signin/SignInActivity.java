@@ -11,10 +11,10 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.jaimenejaim.android.animalcare.R;
-import com.jaimenejaim.android.animalcare.ui.FullScreenBaseActivity;
+import com.jaimenejaim.android.animalcare.ui.FullScreenBaseWithAnimationActivity;
 import com.jaimenejaim.android.animalcare.ui.signup.SignUpActivity;
 
-public class SignInActivity extends FullScreenBaseActivity implements SignInViewImpl {
+public class SignInActivity extends FullScreenBaseWithAnimationActivity implements SignInViewImpl {
 
 
     SignInPresenter presenter;

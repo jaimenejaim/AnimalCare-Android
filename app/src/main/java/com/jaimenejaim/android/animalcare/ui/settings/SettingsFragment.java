@@ -14,9 +14,9 @@ import android.widget.Button;
 
 import com.jaimenejaim.android.animalcare.R;
 import com.jaimenejaim.android.animalcare.ui.BaseFragment;
-import com.jaimenejaim.android.animalcare.ui.signin.SignInActivity;
 import com.jaimenejaim.android.animalcare.ui.my_animals.others.DividerItemDecotation;
 import com.jaimenejaim.android.animalcare.ui.settings.adapters.SettingsAdapter;
+import com.jaimenejaim.android.animalcare.ui.signin.SignInActivity;
 
 
 public class SettingsFragment extends BaseFragment implements SettingsViewImpl {
@@ -99,5 +99,11 @@ public class SettingsFragment extends BaseFragment implements SettingsViewImpl {
         mRecyclerView.setAdapter(mAdapter);
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+    }
+
+    @Override
+    public void openActivity(Object activity) {
+        Intent intent = new Intent(getActivity(), activity.getClass());
+        startActivity(intent);
     }
 }

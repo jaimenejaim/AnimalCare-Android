@@ -9,9 +9,9 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 
 import com.jaimenejaim.android.animalcare.R;
-import com.jaimenejaim.android.animalcare.ui.FullScreenBaseActivity;
+import com.jaimenejaim.android.animalcare.ui.FullScreenBaseWithAnimationActivity;
 
-public class SignUpActivity extends FullScreenBaseActivity implements SignUpVewImpl {
+public class SignUpActivity extends FullScreenBaseWithAnimationActivity implements SignUpVewImpl {
 
     SignUpPresenter presenter;
     LinearLayout buttonBack;

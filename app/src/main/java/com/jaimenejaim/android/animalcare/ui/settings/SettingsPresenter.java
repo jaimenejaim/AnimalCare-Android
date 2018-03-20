@@ -8,6 +8,11 @@ import com.jaimenejaim.android.animalcare.data.persistence.entity.Auth;
 import com.jaimenejaim.android.animalcare.data.persistence.entity.Settings;
 import com.jaimenejaim.android.animalcare.data.persistence.entity.SettingsEnum;
 import com.jaimenejaim.android.animalcare.data.pref.Session;
+import com.jaimenejaim.android.animalcare.ui.evaluation.EvaluationActivity;
+import com.jaimenejaim.android.animalcare.ui.friend_care.FriendCareActivity;
+import com.jaimenejaim.android.animalcare.ui.instructions.InstructionsActivity;
+import com.jaimenejaim.android.animalcare.ui.my_account.MyAccountActivity;
+import com.jaimenejaim.android.animalcare.ui.plans_payments.PlansPaymentsActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -116,11 +121,11 @@ public class SettingsPresenter implements SettingsPresenterImpl {
     public void onItemClick(Settings settings) {
         switch (settings.getSettingsEnum()){
             case ACCOUNT:
-
+                view.openActivity(new MyAccountActivity());
                 break;
 
             case ADOPT:
-
+                view.openActivity(new FriendCareActivity());
                 break;
 
             case ADDRESS:
@@ -128,15 +133,15 @@ public class SettingsPresenter implements SettingsPresenterImpl {
                 break;
 
             case PAYMENTS:
-
+                view.openActivity(new PlansPaymentsActivity());
                 break;
 
             case EVALUATION:
-
+                view.openActivity(new EvaluationActivity());
                 break;
 
             case INSTRUCTIONS:
-
+                view.openActivity(new InstructionsActivity());
                 break;
         }
     }
