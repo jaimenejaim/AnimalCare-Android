@@ -10,10 +10,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:tabMode="fixed"
-        android:background="@color/colorPrimary"
+        android:background="@color/white"
         app:tabGravity="fill"
-        app:tabTextColor="@color/white"
-        app:tabSelectedTextColor="@color/white"
+        app:tabTextColor="@color/colorPrimary"
+        app:tabSelectedTextColor="@color/colorPrimary"
         app:tabTextAppearance="@style/CustomTabTextSize"/>
 
     <com.jaimenejaim.android.animalcare.ui.messages.others.ViewPagerWithOutScroll
