@@ -9,7 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.jaimenejaim.android.animalcare.R;
-import com.jaimenejaim.android.animalcare.data.persistence.entity.Settings;
+import com.jaimenejaim.android.animalcare.ui.settings.others.Settings;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;

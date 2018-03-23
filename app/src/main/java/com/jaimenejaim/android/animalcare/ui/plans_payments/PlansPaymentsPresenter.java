@@ -22,6 +22,6 @@ public class PlansPaymentsPresenter implements PlansPaymentsPresenterImpl {
 
     @Override
     public Context getContext() {
-        return null;
+        return view.getContext();
     }
 }

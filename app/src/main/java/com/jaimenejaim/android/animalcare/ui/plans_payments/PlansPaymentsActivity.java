@@ -8,7 +8,7 @@ import android.view.View;
 import com.jaimenejaim.android.animalcare.R;
 import com.jaimenejaim.android.animalcare.ui.BaseActivity;
 
-public class PlansPaymentsActivity extends BaseActivity implements PlansPaymentsViewImpl {
+public class PlansPaymentsActivity extends BaseActivity implements PlansPaymentsViewImpl, PlansPaymentsViewImpl.Activity {
 
     private Toolbar toolbar;
     private PlansPaymentsPresenter presenter;
@@ -42,6 +42,8 @@ public class PlansPaymentsActivity extends BaseActivity implements PlansPayments
 
     public void setConfigToolbar(){
         toolbar.setNavigationIcon(getResources().getDrawable(R.drawable.ic_back));
+        toolbar.setTitle(getString(R.string.settings_menu_payments));
+        setSupportActionBar(toolbar);
     }
 
     public void setListeners() {

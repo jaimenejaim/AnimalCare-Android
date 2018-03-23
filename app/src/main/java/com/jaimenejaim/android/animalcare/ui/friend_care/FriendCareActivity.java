@@ -43,6 +43,8 @@ public class FriendCareActivity extends BaseActivity implements FriendCareViewIm
     @Override
     public void setConfigToolbar(){
         toolbar.setNavigationIcon(getResources().getDrawable(R.drawable.ic_back));
+        toolbar.setTitle(getString(R.string.settings_menu_care));
+        setSupportActionBar(toolbar);
     }
 
     @Override

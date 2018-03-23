@@ -1,30 +1,25 @@
-package com.jaimenejaim.android.animalcare.data.persistence.entity;
+package com.jaimenejaim.android.animalcare.ui.my_animals_detail.others;
 
 import android.graphics.drawable.Drawable;
 import android.widget.ImageView;
 
+import com.jaimenejaim.android.animalcare.ui.my_animals_detail.MyAnimalSettingsEnum;
+
 /**
- * Created by jaimenejaim on 18/03/2018.
+ * Created by jaimenejaim on 20/03/2018.
  */
 
-public class Settings {
+public class MyAnimalsDetailSettings {
 
     private Drawable drawableLeftIcon;
     private String title;
     private ImageView imageViewButton;
-    private SettingsEnum settingsEnum;
+    private MyAnimalSettingsEnum settingsEnum;
 
-
-    public Settings(){}
-
-
-    public Settings(String title, SettingsEnum settingsEnum) {
-        this.drawableLeftIcon = drawableLeftIcon;
+    public MyAnimalsDetailSettings(String title, MyAnimalSettingsEnum settingsEnum) {
         this.title = title;
-        this.imageViewButton = imageViewButton;
         this.settingsEnum = settingsEnum;
     }
-
 
     public Drawable getDrawableLeftIcon() {
         return drawableLeftIcon;
@@ -47,10 +42,11 @@ public class Settings {
         this.imageViewButton = imageViewButton;
     }
 
-    public SettingsEnum getSettingsEnum() {
+    public MyAnimalSettingsEnum getSettingsEnum() {
         return settingsEnum;
     }
-    public void setSettingsEnum(SettingsEnum settingsEnum) {
+    public void setSettingsEnum(MyAnimalSettingsEnum settingsEnum) {
         this.settingsEnum = settingsEnum;
     }
+
 }

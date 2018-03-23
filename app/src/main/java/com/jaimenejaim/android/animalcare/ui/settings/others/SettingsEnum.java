@@ -1,4 +1,4 @@
-package com.jaimenejaim.android.animalcare.data.persistence.entity;
+package com.jaimenejaim.android.animalcare.ui.settings.others;
 
 /**
  * Created by jaimenejaim on 18/03/2018.

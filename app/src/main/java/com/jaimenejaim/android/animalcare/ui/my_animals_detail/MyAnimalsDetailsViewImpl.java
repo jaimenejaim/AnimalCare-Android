@@ -12,5 +12,6 @@ import com.jaimenejaim.android.animalcare.ui.ViewImpl;
 public interface MyAnimalsDetailsViewImpl extends ViewImpl, ViewImpl.Activity {
 
     Animal getAnimalFromExtra(Intent intent);
+    void openActivity(Object object);
 
 }

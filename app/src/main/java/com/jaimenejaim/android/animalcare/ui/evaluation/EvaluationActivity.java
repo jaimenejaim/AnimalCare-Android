@@ -31,7 +31,7 @@ public class EvaluationActivity extends BaseActivity implements EvaluationViewIm
 
     @Override
     public Context getContext() {
-        return null;
+        return this;
     }
 
 
@@ -43,6 +43,8 @@ public class EvaluationActivity extends BaseActivity implements EvaluationViewIm
     @Override
     public void setConfigToolbar(){
         toolbar.setNavigationIcon(getResources().getDrawable(R.drawable.ic_back));
+        toolbar.setTitle(getString(R.string.settings_menu_rating));
+        setSupportActionBar(toolbar);
     }
 
     @Override

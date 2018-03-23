@@ -8,7 +8,7 @@ import android.support.v7.widget.Toolbar;
 import com.jaimenejaim.android.animalcare.R;
 import com.jaimenejaim.android.animalcare.ui.BaseActivity;
 
-public class MyAccountActivity extends BaseActivity implements MyAccountViewImpl {
+public class MyAccountActivity extends BaseActivity implements MyAccountViewImpl, MyAccountViewImpl.Activity {
 
     private MyAccountPresenter presenter;
     private Toolbar toolbar;
@@ -41,6 +41,8 @@ public class MyAccountActivity extends BaseActivity implements MyAccountViewImpl
 
     public void setConfigToolbar(){
         toolbar.setNavigationIcon(getResources().getDrawable(R.drawable.ic_back));
+        toolbar.setTitle(getString(R.string.settings_menu_account));
+        setSupportActionBar(toolbar);
     }
 
     public void setListeners() {

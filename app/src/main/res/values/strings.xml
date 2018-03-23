@@ -62,4 +62,14 @@
     <string name="title_activity_friend_care">FriendCareActivity</string>
 
 
+    <string name="my_naimal_details_settings_menu_vaccination_card">Carteira de vacinação</string>
+    <string name="my_naimal_details_settings_menu_medicines">Medicamentos</string>
+    <string name="my_naimal_details_settings_menu_events">Eventos</string>
+    <string name="my_naimal_details_settings_menu_query">Consultas</string>
+    <string name="title_activity_queries">QueriesActivity</string>
+    <string name="title_activity_events">EventsActivity</string>
+    <string name="title_activity_vaccination_card">VaccinationCardActivity</string>
+    <string name="title_activity_animals_data_details">AnimalsDataDetailsActivity</string>
+
+
 </resources>

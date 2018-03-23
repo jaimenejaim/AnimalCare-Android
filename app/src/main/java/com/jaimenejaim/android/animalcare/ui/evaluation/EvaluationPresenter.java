@@ -8,7 +8,7 @@ import android.content.Context;
 
 public class EvaluationPresenter implements EvaluationPresenterImpl {
 
-    EvaluationViewImpl view;
+    private EvaluationViewImpl view;
 
 
     public EvaluationPresenter(EvaluationViewImpl view){
@@ -22,6 +22,6 @@ public class EvaluationPresenter implements EvaluationPresenterImpl {
 
     @Override
     public Context getContext() {
-        return null;
+        return view.getContext();
     }
 }

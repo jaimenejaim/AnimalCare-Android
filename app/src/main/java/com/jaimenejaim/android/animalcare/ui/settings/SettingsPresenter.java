@@ -5,14 +5,14 @@ import android.content.Context;
 import com.jaimenejaim.android.animalcare.R;
 import com.jaimenejaim.android.animalcare.data.network.api.Network;
 import com.jaimenejaim.android.animalcare.data.persistence.entity.Auth;
-import com.jaimenejaim.android.animalcare.data.persistence.entity.Settings;
-import com.jaimenejaim.android.animalcare.data.persistence.entity.SettingsEnum;
 import com.jaimenejaim.android.animalcare.data.pref.Session;
 import com.jaimenejaim.android.animalcare.ui.evaluation.EvaluationActivity;
 import com.jaimenejaim.android.animalcare.ui.friend_care.FriendCareActivity;
 import com.jaimenejaim.android.animalcare.ui.instructions.InstructionsActivity;
 import com.jaimenejaim.android.animalcare.ui.my_account.MyAccountActivity;
 import com.jaimenejaim.android.animalcare.ui.plans_payments.PlansPaymentsActivity;
+import com.jaimenejaim.android.animalcare.ui.settings.others.Settings;
+import com.jaimenejaim.android.animalcare.ui.settings.others.SettingsEnum;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,6 +42,7 @@ public class SettingsPresenter implements SettingsPresenterImpl {
     public Context getContext() {
         return view.getContext();
     }
+
 
     @Override
     public void logOut() {
@@ -98,9 +99,6 @@ public class SettingsPresenter implements SettingsPresenterImpl {
                 getContext().getString(R.string.settings_menu_account), SettingsEnum.ACCOUNT
         ));
         settings.add(new Settings(
-                getContext().getString(R.string.settings_menu_address), SettingsEnum.ADDRESS
-        ));
-        settings.add(new Settings(
                 getContext().getString(R.string.settings_menu_care), SettingsEnum.ADOPT
         ));
         settings.add(new Settings(
@@ -126,10 +124,6 @@ public class SettingsPresenter implements SettingsPresenterImpl {
 
             case ADOPT:
                 view.openActivity(new FriendCareActivity());
-                break;
-
-            case ADDRESS:
-
                 break;
 
             case PAYMENTS:

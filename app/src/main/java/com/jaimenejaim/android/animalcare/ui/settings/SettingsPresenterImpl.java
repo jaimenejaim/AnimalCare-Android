@@ -1,6 +1,6 @@
 package com.jaimenejaim.android.animalcare.ui.settings;
 
-import com.jaimenejaim.android.animalcare.data.persistence.entity.Settings;
+import com.jaimenejaim.android.animalcare.ui.settings.others.Settings;
 import com.jaimenejaim.android.animalcare.ui.PresenterImpl;
 
 import java.util.List;
