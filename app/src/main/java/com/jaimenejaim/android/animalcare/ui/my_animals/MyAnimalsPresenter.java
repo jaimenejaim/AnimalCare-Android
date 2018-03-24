@@ -102,8 +102,12 @@ public class MyAnimalsPresenter implements MyAnimalsPresenterImpl {
 
                         switch (response.code()){
 
-                            case 404:
+                            case 401:
 
+                                break;
+
+                            case 404:
+                                view.setTextViewNotFoundDataVisibility(View.GONE);
                                 break;
 
                             case 500:

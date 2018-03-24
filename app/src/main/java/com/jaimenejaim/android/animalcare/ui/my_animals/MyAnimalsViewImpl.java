@@ -17,4 +17,6 @@ public interface MyAnimalsViewImpl extends ViewImpl {
     void fetchDataOnRecyclerListView(List<Animal> animals);
     void onSwipe();
     void setVisibilityLoadIndicator(boolean enabled);
+    void setOnLoadNotFoundData();
+    void setTextViewNotFoundDataVisibility(int visibility);
 }

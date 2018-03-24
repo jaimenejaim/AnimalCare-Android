@@ -11,6 +11,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.jaimenejaim.android.animalcare.R;
 import com.jaimenejaim.android.animalcare.data.persistence.entity.Animal;
@@ -32,6 +33,7 @@ public class MyAnimalsFragment extends BaseFragment implements MyAnimalsViewImpl
     private MyAnimalsRecyclerAdapter mAdapter;
     private FloatingActionButton buttonAdd;
     private SwipeRefreshLayout mSwipeRefreshLayout;
+    private TextView mTextViewNotFoundData;
 
 
     @Override
@@ -71,6 +73,7 @@ public class MyAnimalsFragment extends BaseFragment implements MyAnimalsViewImpl
         mRecyclerView = view.findViewById(R.id.recyclerView);
         buttonAdd = view.findViewById(R.id.buttonAdd);
         mSwipeRefreshLayout = view.findViewById(R.id.swipeRefreshLayout);
+        mTextViewNotFoundData = view.findViewById(R.id.textViewNotFoundData);
     }
 
     @Override
@@ -127,5 +130,19 @@ public class MyAnimalsFragment extends BaseFragment implements MyAnimalsViewImpl
     public void setVisibilityLoadIndicator(boolean enabled){
         mSwipeRefreshLayout.setRefreshing(enabled);
     }
+
+    @Override
+    public void setOnLoadNotFoundData(){
+        setTextViewNotFoundDataVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void setTextViewNotFoundDataVisibility(int visibility){
+        mTextViewNotFoundData.setVisibility(visibility);
+    }
+
+//    public void onLoadMore(){
+////        presenter.onLoadMore();
+//    }
 
 }
