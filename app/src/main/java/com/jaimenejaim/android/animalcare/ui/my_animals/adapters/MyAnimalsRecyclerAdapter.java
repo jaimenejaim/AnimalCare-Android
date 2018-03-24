@@ -14,6 +14,8 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
+import io.rmiri.skeleton.SkeletonGroup;
+
 /**
  * Created by jaimenejaim on 11/03/2018.
  */
@@ -57,12 +59,14 @@ public class MyAnimalsRecyclerAdapter extends RecyclerView.Adapter<MyAnimalsRecy
         ImageView _photo;
         TextView _name;
         TextView _breed;
+        SkeletonGroup _skeletonGroup;
 
         public ViewHolder(View itemView) {
             super(itemView);
             _photo = itemView.findViewById(R.id.img);
             _name =  itemView.findViewById(R.id.textViewName);
             _breed = itemView.findViewById(R.id.textViewBreed);
+            _skeletonGroup = itemView.findViewById(R.id.skeletonGroup);
         }
 
         public void bind(final Animal item) {
@@ -74,6 +78,18 @@ public class MyAnimalsRecyclerAdapter extends RecyclerView.Adapter<MyAnimalsRecy
 
                 itemView.setOnClickListener(v -> {
                     if(listener !=null) listener.onItemClick(item);
+                });
+
+                _skeletonGroup.setSkeletonListener(new SkeletonGroup.SkeletonListener() {
+                    @Override
+                    public void onStartAnimation() {
+
+                    }
+
+                    @Override
+                    public void onFinishAnimation() {
+
+                    }
                 });
             }
 

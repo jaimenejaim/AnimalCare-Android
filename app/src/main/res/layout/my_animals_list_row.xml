@@ -1,48 +1,103 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:Skeleton="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:id="@+id/img"
-        android:src="@drawable/placeholder_dog"
-        android:layout_marginStart="14dp"
-        android:layout_marginTop="12dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Nick"
-        android:id="@+id/textViewName"
-        android:textSize="16sp"
-        android:layout_marginLeft="15dp"
-        android:paddingTop="10dp"
-        android:layout_alignTop="@+id/img"
-        android:layout_toRightOf="@+id/img"
-        android:layout_toEndOf="@+id/img"
-        android:singleLine="true"
-        android:textColor="@color/black"/>
-
-    <TextView
+    <io.rmiri.skeleton.SkeletonGroup
+        android:id="@+id/skeletonGroup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="Golden Retreiver"
-        android:id="@+id/textViewBreed"
-        android:layout_marginRight="15dp"
-        android:lines="2"
-        android:paddingBottom="10dp"
-        android:ellipsize="end"
-        android:layout_below="@+id/textViewName"
-        android:layout_alignLeft="@+id/textViewName"
-        android:layout_alignStart="@+id/textViewName"
-        android:textColor="@color/dark_silver"/>
+        Skeleton:SK_BackgroundViewsColor="#EEEEEE"
+        Skeleton:SK_animationAutoStart="true"
+        Skeleton:SK_animationDirection="LTR"
+        Skeleton:SK_animationDuration="1000"
+        Skeleton:SK_animationFinishType="gradient"
+        Skeleton:SK_animationNormalType="gradient"
+        Skeleton:SK_backgroundMainColor="@android:color/transparent"
+        Skeleton:SK_highLightColor="#DEDEDE">
 
-</RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <io.rmiri.skeleton.SkeletonView
+                android:id="@+id/skeletonViewPhoto"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_marginStart="14dp"
+                android:layout_marginTop="12dp"
+                Skeleton:SK_shapeType="oval"
+                android:layout_centerVertical="true">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:id="@+id/img"
+                    android:src="@drawable/placeholder_dog"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentStart="true" />
+
+            </io.rmiri.skeleton.SkeletonView>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/skeletonViewPhoto"
+                android:layout_toEndOf="@+id/skeletonViewPhoto"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_centerVertical="true">
+
+                <io.rmiri.skeleton.SkeletonView
+                    android:id="@+id/skeletonViewName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    Skeleton:SK_cornerRadius="0dp"
+                    Skeleton:SK_padding="0dp"
+                    Skeleton:SK_shapeType="rect">
+
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:text="Nick"
+                        android:id="@+id/textViewName"
+                        android:textSize="16sp"
+                        android:singleLine="true"
+                        android:textColor="@color/black"/>
+
+                </io.rmiri.skeleton.SkeletonView>
+
+                <io.rmiri.skeleton.SkeletonView
+                    android:id="@+id/skeletonViewBreed"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    Skeleton:SK_cornerRadius="0dp"
+                    Skeleton:SK_padding="0dp"
+                    Skeleton:SK_shapeType="rect"
+                    android:layout_marginTop="4dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:text="Golden Retreiver"
+                        android:id="@+id/textViewBreed"
+                        android:lines="1"
+                        android:ellipsize="end"
+                        android:textColor="@color/dark_silver"/>
+
+                </io.rmiri.skeleton.SkeletonView>
+
+            </LinearLayout>
+
+
+        </RelativeLayout>
+    </io.rmiri.skeleton.SkeletonGroup>
+
+</LinearLayout>

@@ -4,17 +4,16 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.jaimenejaim.android.animalcare.R;
 import com.jaimenejaim.android.animalcare.data.persistence.entity.Animal;
-import com.jaimenejaim.android.animalcare.data.persistence.entity.Breed;
 import com.jaimenejaim.android.animalcare.ui.BaseFragment;
 import com.jaimenejaim.android.animalcare.ui.my_animals.adapters.MyAnimalsRecyclerAdapter;
 import com.jaimenejaim.android.animalcare.ui.my_animals.others.DividerItemDecotation;
@@ -28,10 +27,11 @@ import java.util.List;
 public class MyAnimalsFragment extends BaseFragment implements MyAnimalsViewImpl {
 
 
-    private static final String TAG = MyAnimalsFragment.class.getSimpleName();
+    private MyAnimalsPresenter presenter;
     private RecyclerView mRecyclerView;
     private MyAnimalsRecyclerAdapter mAdapter;
     private FloatingActionButton buttonAdd;
+    private SwipeRefreshLayout mSwipeRefreshLayout;
 
 
     @Override
@@ -50,84 +50,15 @@ public class MyAnimalsFragment extends BaseFragment implements MyAnimalsViewImpl
         setListeners();
 
 
-
         return view;
     }
 
     public void configRecyclerView(){
 
-        Breed breed = new Breed();
-        breed.setDescription("Golden Retriever");
+        fetchDataOnRecyclerListView(new ArrayList<>());
+        presenter.defaultData();
+        presenter.getMyAnimals(0);
 
-        Animal nick = new Animal();
-        nick.setName("Nick");
-        nick.setBreedId(0);
-        nick.setBreed(breed);
-
-        Animal ralph = new Animal();
-        ralph.setName("Ralph");
-        ralph.setBreedId(0);
-        ralph.setBreed(breed);
-
-        Animal zeus = new Animal();
-        zeus.setName("Zeus");
-        zeus.setBreedId(0);
-        zeus.setBreed(breed);
-
-
-        Animal vlademir = new Animal();
-        vlademir.setName("Vlademir");
-        vlademir.setBreedId(0);
-        vlademir.setBreed(breed);
-
-        Animal rarus = new Animal();
-        rarus.setName("Rarus");
-        rarus.setBreedId(0);
-        rarus.setBreed(breed);
-
-        Animal tick = new Animal();
-        tick.setName("Tick");
-        tick.setBreedId(0);
-        tick.setBreed(breed);
-
-        Animal bob = new Animal();
-        bob.setName("Bob");
-        bob.setBreedId(0);
-        bob.setBreed(breed);
-
-        Animal theo = new Animal();
-        theo.setName("Theo");
-        theo.setBreedId(0);
-        theo.setBreed(breed);
-
-        Animal luck = new Animal();
-        luck.setName("Luck");
-        luck.setBreedId(0);
-        luck.setBreed(breed);
-
-        Animal barney = new Animal();
-        barney.setName("Barney");
-        barney.setBreedId(0);
-        barney.setBreed(breed);
-
-        List<Animal> animals = new ArrayList<>();
-        animals.add(nick);
-        animals.add(ralph);
-        animals.add(zeus);
-        animals.add(vlademir);
-        animals.add(rarus);
-        animals.add(tick);
-        animals.add(bob);
-        animals.add(theo);
-        animals.add(luck);
-        animals.add(barney);
-
-
-        mAdapter = new MyAnimalsRecyclerAdapter(animals);
-        mRecyclerView.addItemDecoration(new DividerItemDecotation(getContext()));
-        mRecyclerView.setAdapter(mAdapter);
-        mRecyclerView.setItemAnimator(new DefaultItemAnimator());
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
     }
 
     @Override
@@ -139,31 +70,62 @@ public class MyAnimalsFragment extends BaseFragment implements MyAnimalsViewImpl
     public void initComponents(View view) {
         mRecyclerView = view.findViewById(R.id.recyclerView);
         buttonAdd = view.findViewById(R.id.buttonAdd);
+        mSwipeRefreshLayout = view.findViewById(R.id.swipeRefreshLayout);
     }
 
     @Override
     public void setListeners() {
+
         buttonAdd.setOnClickListener(view -> {
             Intent intent = new Intent(getActivity(), NewAnimalActivity.class);
             startActivityForResult(intent, REQUEST_CODE_NEW_ANIMAL_ACTIVITY);
         });
 
         mAdapter.setOnItemClickListener(item -> {
-            Log.i(TAG, "name = ".concat(item.getName()));
             Intent intent = new Intent(getActivity(), MyAnimalsDetailActivity.class);
             intent.putExtra("animal",item);
             startActivityForResult(intent, REQUEST_CODE_DETAIL_ANIMAL_ACTIVITY);
         });
+
+        mSwipeRefreshLayout.setOnRefreshListener(() -> {
+            presenter.onRefresh();
+        });
+
     }
 
 
     @Override
     public void intiPresenter() {
-
+        presenter = new MyAnimalsPresenter(this);
     }
 
     @Override
     public void finish() {
         getActivity().finish();
     }
+
+    @Override
+    public void loadMyAnimals(int page) {
+        presenter.getMyAnimals(page);
+    }
+
+    @Override
+    public void fetchDataOnRecyclerListView(List<Animal> animals){
+        mAdapter = new MyAnimalsRecyclerAdapter(animals);
+        mRecyclerView.addItemDecoration(new DividerItemDecotation(getContext()));
+        mRecyclerView.setAdapter(mAdapter);
+        mRecyclerView.setItemAnimator(new DefaultItemAnimator());
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+    }
+
+    @Override
+    public void onSwipe(){
+
+    }
+
+    @Override
+    public void setVisibilityLoadIndicator(boolean enabled){
+        mSwipeRefreshLayout.setRefreshing(enabled);
+    }
+
 }

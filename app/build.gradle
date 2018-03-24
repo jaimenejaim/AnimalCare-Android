@@ -59,5 +59,6 @@ dependencies {
     annotationProcessor "android.arch.persistence.room:compiler:1.1.0-alpha3"
     compile "android.arch.persistence.room:rxjava2:1.1.0-alpha3"
     implementation 'com.squareup.picasso:picasso:2.71828'
+    compile 'com.github.rasoulmiri:Skeleton:v1.0.9'
 
 }

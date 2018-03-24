@@ -1,11 +1,19 @@
 package com.jaimenejaim.android.animalcare.data.network.api;
 
+import com.google.gson.JsonObject;
+import com.jaimenejaim.android.animalcare.data.persistence.entity.Animal;
 import com.jaimenejaim.android.animalcare.data.persistence.entity.Auth;
 import com.jaimenejaim.android.animalcare.data.persistence.entity.User;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.util.List;
 
 import io.reactivex.Observable;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
 
@@ -32,5 +40,8 @@ public interface Service {
 
     @POST("/auth/user")
     Observable<User> getUser(@Header("Authorization") String formmatedAccessToken, @Field("username") String username);
+
+    @GET("/client/animals")
+    Observable<JsonObject> getUserAnimals(@Header("Authorization") String formmatedAccessToken);
 
 }
