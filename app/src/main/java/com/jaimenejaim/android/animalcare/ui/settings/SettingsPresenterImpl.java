@@ -13,4 +13,5 @@ public interface SettingsPresenterImpl extends PresenterImpl {
     void logOut();
     List<Settings> loadSettings();
     void onItemClick(Settings settings);
+    void getProfileData();
 }

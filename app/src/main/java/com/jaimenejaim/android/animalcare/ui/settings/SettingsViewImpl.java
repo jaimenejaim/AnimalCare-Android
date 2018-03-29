@@ -1,5 +1,7 @@
 package com.jaimenejaim.android.animalcare.ui.settings;
 
+import android.widget.TextView;
+
 import com.jaimenejaim.android.animalcare.ui.ViewImpl;
 
 /**
@@ -10,4 +12,5 @@ public interface SettingsViewImpl extends ViewImpl {
 
     void finish();
     void openActivity(Object activity);
+    TextView getTextViewProfileName();
 }

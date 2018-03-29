@@ -5,12 +5,15 @@ import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
 import android.arch.persistence.room.TypeConverters;
+import android.graphics.Bitmap;
 import android.os.Parcel;
 import android.os.Parcelable;
 
 import com.google.gson.annotations.SerializedName;
 import com.jaimenejaim.android.animalcare.data.persistence.converter.DateConverter;
+import com.jaimenejaim.android.animalcare.utils.BitmapUtil;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -27,6 +30,11 @@ public class User implements Parcelable {
     @SerializedName("id")
     private long id;
 
+    @SerializedName("name")
+    @ColumnInfo(name = "name")
+    private String name;
+
+
     @SerializedName("username")
     @ColumnInfo(name = "username")
     private String username;
@@ -34,6 +42,9 @@ public class User implements Parcelable {
     @SerializedName("active")
     @ColumnInfo(name = "active")
     private boolean active;
+
+
+    private byte[] profilePicture;
 
     @Ignore //ignore this attribute when load Room ORM
     @SerializedName("animals")
@@ -48,20 +59,32 @@ public class User implements Parcelable {
     private Date updatedAt;
 
     /*
-     * Constructors
-     * */
+         * Constructors
+         * */
     @Ignore //ignore this attribute when load Room ORM
     public User(){
         this.animals = new ArrayList<>();
     }
-    public User(long id, String username, boolean active, Date createdAt, Date updatedAt) {
+    public User(long id, String name, String username, boolean active, Date createdAt, Date updatedAt) {
         this.id = id;
+        this.name = name;
         this.username = username;
         this.active = active;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
         this.animals = new ArrayList<>();
     }
+    public User(long id, String name, String username, boolean active, byte[] profilePicture, Date createdAt, Date updatedAt) {
+        this.id = id;
+        this.name = name;
+        this.username = username;
+        this.active = active;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
+        this.animals = new ArrayList<>();
+        this.profilePicture = profilePicture;
+    }
+
 
     /*
     * Gets and Sets
@@ -108,6 +131,20 @@ public class User implements Parcelable {
         this.updatedAt = updatedAt;
     }
 
+    public String getName() {
+        return name;
+    }
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public byte[] getProfilePicture() {
+        return profilePicture;
+    }
+    public void setProfilePicture(byte[] profilePicture) {
+        this.profilePicture = profilePicture;
+    }
+
 
     @Override
     public int describeContents() {
@@ -117,8 +154,10 @@ public class User implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeLong(this.id);
+        dest.writeString(this.name);
         dest.writeString(this.username);
         dest.writeByte(this.active ? (byte) 1 : (byte) 0);
+        dest.writeByteArray(this.profilePicture);
         dest.writeTypedList(this.animals);
         dest.writeLong(this.createdAt != null ? this.createdAt.getTime() : -1);
         dest.writeLong(this.updatedAt != null ? this.updatedAt.getTime() : -1);
@@ -126,8 +165,10 @@ public class User implements Parcelable {
 
     protected User(Parcel in) {
         this.id = in.readLong();
+        this.name = in.readString();
         this.username = in.readString();
         this.active = in.readByte() != 0;
+        this.profilePicture = in.createByteArray();
         this.animals = in.createTypedArrayList(Animal.CREATOR);
         long tmpCreatedAt = in.readLong();
         this.createdAt = tmpCreatedAt == -1 ? null : new Date(tmpCreatedAt);
@@ -146,4 +187,14 @@ public class User implements Parcelable {
             return new User[size];
         }
     };
+
+    /* return bitmap from converted byte array saved in local storage. */
+    public Bitmap getProfilePictureBitmap(){
+        try {
+            return BitmapUtil.decodeBitmap(this.profilePicture);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }

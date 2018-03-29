@@ -46,9 +46,8 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
 
 
-    compile 'com.squareup.retrofit2:retrofit:2.3.0'
-    compile 'com.squareup.retrofit2:converter-gson:2.3.0'
-    compile 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
+    compile 'com.github.rasoulmiri:Skeleton:v1.0.9'
+    compile 'com.amitshekhar.android:rx2-android-networking:1.0.1'
     compile 'io.reactivex.rxjava2:rxjava:2.1.9'
     compile 'io.reactivex.rxjava2:rxandroid:2.0.2'
     compile 'com.orhanobut:hawk:2.0.1'

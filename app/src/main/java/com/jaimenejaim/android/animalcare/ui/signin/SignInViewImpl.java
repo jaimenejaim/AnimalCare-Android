@@ -12,5 +12,6 @@ public interface SignInViewImpl extends ViewImpl {
 
     EditText getEditTextEmail();
     EditText getEditTextPassword();
+    void openActivity(Object activity);
 
 }

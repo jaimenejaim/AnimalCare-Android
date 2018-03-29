@@ -70,6 +70,7 @@
     <string name="title_activity_events">EventsActivity</string>
     <string name="title_activity_vaccination_card">VaccinationCardActivity</string>
     <string name="title_activity_animals_data_details">AnimalsDataDetailsActivity</string>
+    <string name="fragment_my_animals_not_found_animals_list">Nenhum animal encontrado</string>
 
 
 </resources>

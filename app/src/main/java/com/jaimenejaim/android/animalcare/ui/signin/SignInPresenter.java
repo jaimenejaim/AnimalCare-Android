@@ -1,23 +1,19 @@
 package com.jaimenejaim.android.animalcare.ui.signin;
 
 import android.content.Context;
-import android.content.Intent;
+import android.util.Log;
 import android.util.Patterns;
 
+import com.google.gson.JsonObject;
 import com.jaimenejaim.android.animalcare.R;
 import com.jaimenejaim.android.animalcare.data.network.api.Network;
-import com.jaimenejaim.android.animalcare.data.network.api.Service;
 import com.jaimenejaim.android.animalcare.data.persistence.entity.Auth;
 import com.jaimenejaim.android.animalcare.data.persistence.seed.BreedSeed;
 import com.jaimenejaim.android.animalcare.data.pref.Session;
 import com.jaimenejaim.android.animalcare.ui.home.HomeActivity;
 
 import io.reactivex.Observer;
-import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
-import io.reactivex.schedulers.Schedulers;
-import retrofit2.HttpException;
-import retrofit2.Response;
 
 /**
  * Created by jaimenejaim on 09/03/2018.
@@ -27,11 +23,11 @@ public class SignInPresenter implements SignInPresenterImpl {
 
 
     private SignInViewImpl view;
-    private Service networkService;
+    private Network network;
 
     public SignInPresenter(SignInViewImpl view){
         this.view = view;
-        networkService = Network.getAPIService();
+        network = new Network(getContext());
 
         //create breed if not exists
         new BreedSeed(getContext()).create();
@@ -46,47 +42,67 @@ public class SignInPresenter implements SignInPresenterImpl {
         if(validadeLogIn(email,password)) return;
 
 
-        networkService.logIn(email,password)
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe(new Observer<Auth>() {
-                @Override
-                public void onSubscribe(Disposable d) {}
+        network.logIn(email, password, new Observer<Auth>() {
+            @Override
+            public void onSubscribe(Disposable d) {
 
-                @Override
-                public void onNext(Auth auth) {
+            }
 
-                    //Saving current logged user;
-                    Session.make(getContext(), auth);
+            @Override
+            public void onNext(Auth auth) {
+                Session.make(getContext(), auth);
+            }
 
-                }
+            @Override
+            public void onError(Throwable e) {
 
-                @Override
-                public void onError(Throwable e) {
-                    if (e instanceof HttpException) {
-                        Response<?> response = ((HttpException) e).response();
 
-                        switch (response.code()){
+//                if (e instanceof HttpException) {
+//                        Response<?> response = ((HttpException) e).response();
+//
+//                        switch (response.code()){
+//
+//                            case 401:
+//                                view.getEditTextPassword().setError(getContext().getString(R.string.log_in_error_message_invalid_credentials));
+//                                break;
+//
+//                            case 500:
+//
+//                                break;
+//                        }
+//                    }
+            }
 
-                            case 401:
-                                view.getEditTextPassword().setError(getContext().getString(R.string.log_in_error_message_invalid_credentials));
-                                break;
+            @Override
+            public void onComplete() {
 
-                            case 500:
+                network.getProfile(Session.get(getContext()).getFormattedToken(), new Observer<JsonObject>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
 
-                                break;
-                        }
                     }
-                }
 
-                @Override
-                public void onComplete() {
+                    @Override
+                    public void onNext(JsonObject jsonObject) {
+                        Log.i("SignInPresenter", jsonObject.toString());
+                    }
 
-                    Intent intent = new Intent(getContext(), HomeActivity.class);
-                    getContext().startActivity(intent);
-                    view.finish();
-                }
-            });
+                    @Override
+                    public void onError(Throwable e) {
+                        e.printStackTrace();
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+
+                view.finish();
+                view.openActivity(new HomeActivity());
+
+            }
+        });
     }
 
     @Override
@@ -113,7 +129,7 @@ public class SignInPresenter implements SignInPresenterImpl {
     @Override
     public void onDestroy() {
         view = null;
-        networkService = null;
+        network = null;
     }
 
     @Override

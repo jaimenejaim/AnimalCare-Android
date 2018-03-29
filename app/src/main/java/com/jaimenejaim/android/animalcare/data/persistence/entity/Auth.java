@@ -33,10 +33,15 @@ public class Auth {
     private String refresh_expired_at;
 
 
+    @SerializedName("user")
+    private User user;
+
     /*
     * Constructor
     * */
-    public Auth(){}
+    public Auth(){
+        this.user = new User();
+    }
 
 
     public long getId() {
@@ -95,10 +100,16 @@ public class Auth {
         this.refresh_expired_at = refresh_expired_at;
     }
 
+    public User getUser() {
+        return user;
+    }
+    public void setUser(User user) {
+        this.user = user;
+    }
 
     /*
-    * this method @return String token Formatted, for example Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiKJ0
-    * */
+        * this method @return String token Formatted, for example Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiKJ0
+        * */
     public String getFormattedToken(){
         return this.token_type.concat(" ").concat(access_token);
     }

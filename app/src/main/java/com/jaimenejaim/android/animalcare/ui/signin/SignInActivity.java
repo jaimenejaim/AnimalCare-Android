@@ -87,6 +87,12 @@ public class SignInActivity extends FullScreenBaseWithAnimationActivity implemen
     }
 
     @Override
+    public void openActivity(Object activity) {
+        Intent intent = new Intent(getContext(), activity.getClass());
+        startActivity(intent);
+    }
+
+    @Override
     public void finish(){
         super.finish();
     }

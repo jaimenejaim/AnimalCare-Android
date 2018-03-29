@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.jaimenejaim.android.animalcare.R;
 import com.jaimenejaim.android.animalcare.ui.BaseFragment;
@@ -31,16 +32,15 @@ public class SettingsFragment extends BaseFragment implements SettingsViewImpl {
     private SettingsAdapter mAdapter;
     private Button buttonLogOut;
     private SettingsPresenter presenter;
-    private Context context;
+    private TextView textViewProfileName;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_settings, container, false);
-        context = container.getContext();
 
-        intiPresenter();
         initComponents(view);
+        intiPresenter();
         configRecyclerView();
         setListeners();
 
@@ -52,6 +52,7 @@ public class SettingsFragment extends BaseFragment implements SettingsViewImpl {
     public void initComponents(View view) {
         mRecyclerView = view.findViewById(R.id.recyclerView);
         buttonLogOut = view.findViewById(R.id.buttonLogOut);
+        textViewProfileName = view.findViewById(R.id.textViewProfileName);
     }
 
     @Override
@@ -105,5 +106,10 @@ public class SettingsFragment extends BaseFragment implements SettingsViewImpl {
     public void openActivity(Object activity) {
         Intent intent = new Intent(getActivity(), activity.getClass());
         startActivity(intent);
+    }
+
+    @Override
+    public TextView getTextViewProfileName() {
+        return this.textViewProfileName;
     }
 }

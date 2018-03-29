@@ -14,6 +14,8 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
+import io.rmiri.skeleton.SkeletonGroup;
+
 /**
  * Created by jaimenejaim on 11/03/2018.
  */
@@ -37,8 +39,10 @@ public class MyAnimalsRecyclerAdapter extends RecyclerView.Adapter<MyAnimalsRecy
 
     @NonNull
     @Override public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.my_animals_list_row, parent, false);
-        return new ViewHolder(v);
+
+        return new ViewHolder(LayoutInflater
+                .from(parent.getContext())
+                .inflate(R.layout.my_animals_list_row, parent, false));
     }
 
     @Override public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
@@ -57,12 +61,14 @@ public class MyAnimalsRecyclerAdapter extends RecyclerView.Adapter<MyAnimalsRecy
         ImageView _photo;
         TextView _name;
         TextView _breed;
+        SkeletonGroup _skeletonGroup;
 
         public ViewHolder(View itemView) {
             super(itemView);
             _photo = itemView.findViewById(R.id.img);
             _name =  itemView.findViewById(R.id.textViewName);
             _breed = itemView.findViewById(R.id.textViewBreed);
+            _skeletonGroup = itemView.findViewById(R.id.skeletonGroup);
         }
 
         public void bind(final Animal item) {
@@ -77,6 +83,11 @@ public class MyAnimalsRecyclerAdapter extends RecyclerView.Adapter<MyAnimalsRecy
                 });
             }
 
+            if(animals.size() > 0){
+                 _skeletonGroup.setShowSkeleton(false);
+                _skeletonGroup.finishAnimation();
+            }
+
         }
     }
 
@@ -85,3 +96,4 @@ public class MyAnimalsRecyclerAdapter extends RecyclerView.Adapter<MyAnimalsRecy
     }
 
 }
+
