@@ -28,11 +28,12 @@ public class Network {
     private static final String LOGOUT = BASE_URL.concat("/auth/logout");
     private static final String MY_ANIMALS = BASE_URL.concat("/client/animals?embed=image");
     private static final String PROFILE = BASE_URL.concat("/auth/user");
+    public static final String REFRESH_TOKEN = BASE_URL.concat("/auth/refresh");
 
     public Network(Context context){
 
-        OkHttpClient okHttpClient = new OkHttpClient() .newBuilder()
-//                .addNetworkInterceptor(new StethoInterceptor())
+        OkHttpClient okHttpClient = new OkHttpClient().newBuilder()
+                .addNetworkInterceptor(new AuthInterceptor(context))
                 .build();
         AndroidNetworking.initialize(context, okHttpClient);
     }
@@ -51,9 +52,8 @@ public class Network {
 
     }
 
-    public void logOut(String token,  Observer<String> observable){
+    public void logOut(Observer<String> observable){
         Rx2AndroidNetworking.post(LOGOUT)
-                .addHeaders("Authorization", token)
                 .setPriority(Priority.MEDIUM)
                 .build()
                 .getObjectObservable(String.class)
@@ -63,10 +63,8 @@ public class Network {
     }
 
 
-    public void getMyAnimals(String token,  Observer<JsonObject> observable){
-        Log.i("Network", token);
+    public void getMyAnimals(Observer<JsonObject> observable){
         Rx2AndroidNetworking.get(MY_ANIMALS)
-                .addHeaders("Authorization", token)
                 .setPriority(Priority.MEDIUM)
                 .build()
                 .getObjectObservable(JsonObject.class)
@@ -75,9 +73,8 @@ public class Network {
                 .subscribe(observable);
     }
 
-    public void getProfile(String token,  Observer<JsonObject> observable){
+    public void getProfile(Observer<JsonObject> observable){
         Rx2AndroidNetworking.post(PROFILE)
-                .addHeaders("Authorization", token)
                 .setPriority(Priority.MEDIUM)
                 .build()
                 .getObjectObservable(JsonObject.class)

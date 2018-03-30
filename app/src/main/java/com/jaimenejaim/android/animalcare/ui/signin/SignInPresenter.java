@@ -76,7 +76,7 @@ public class SignInPresenter implements SignInPresenterImpl {
             @Override
             public void onComplete() {
 
-                network.getProfile(Session.get(getContext()).getFormattedToken(), new Observer<JsonObject>() {
+                network.getProfile(new Observer<JsonObject>() {
                     @Override
                     public void onSubscribe(Disposable d) {
 

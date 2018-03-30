@@ -14,10 +14,8 @@ public class DialogUtil {
         AlertDialog.Builder builder = new AlertDialog.Builder(activity);
         builder.setTitle(title);
         builder.setMessage(message);
-        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialogInterface, int n) {
+        builder.setPositiveButton("OK", (dialogInterface, n) -> {
 
-            }
         });
         builder.show();
     }

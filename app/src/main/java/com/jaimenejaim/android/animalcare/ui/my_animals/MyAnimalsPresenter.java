@@ -44,7 +44,7 @@ public class MyAnimalsPresenter implements MyAnimalsPresenterImpl {
         view.setRefreshingOnStartLoadingData();
         view.onFoundData();
 
-        network.getMyAnimals(Session.get(getContext()).getFormattedToken(), new Observer<JsonObject>() {
+        network.getMyAnimals(new Observer<JsonObject>() {
             @Override
             public void onSubscribe(Disposable d) {
 
