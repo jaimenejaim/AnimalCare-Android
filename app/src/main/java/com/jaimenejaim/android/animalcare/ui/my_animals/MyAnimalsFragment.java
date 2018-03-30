@@ -8,7 +8,6 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,11 +28,10 @@ import java.util.List;
 public class MyAnimalsFragment extends BaseFragment implements MyAnimalsViewImpl {
 
 
-    private static final String TAG = MyAnimalsFragment.class.getSimpleName();
+    private MyAnimalsPresenter presenter;
     private RecyclerView mRecyclerView;
     private MyAnimalsRecyclerAdapter mAdapter;
     private FloatingActionButton buttonAdd;
-    private MyAnimalsPresenter presenter;
     private TextView textViewNotFoundAnimals;
     private SwipeRefreshLayout swipeRefreshLayout;
 
@@ -53,6 +51,7 @@ public class MyAnimalsFragment extends BaseFragment implements MyAnimalsViewImpl
         configRecyclerView(new ArrayList<>());
         setListeners();
 
+
         loadMyAnimals();
 
         return view;
@@ -60,12 +59,7 @@ public class MyAnimalsFragment extends BaseFragment implements MyAnimalsViewImpl
 
     @Override
     public void configRecyclerView(List<Animal> animals){
-
-        mAdapter = new MyAnimalsRecyclerAdapter(animals);
-        mRecyclerView.addItemDecoration(new DividerItemDecotation(getContext()));
-        mRecyclerView.setAdapter(mAdapter);
-        mRecyclerView.setItemAnimator(new DefaultItemAnimator());
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        fetchDataOnRecyclerListView(animals);
     }
 
     public void loadMyAnimals(){
@@ -87,13 +81,13 @@ public class MyAnimalsFragment extends BaseFragment implements MyAnimalsViewImpl
 
     @Override
     public void setListeners() {
+
         buttonAdd.setOnClickListener(view -> {
             Intent intent = new Intent(getActivity(), NewAnimalActivity.class);
             startActivityForResult(intent, REQUEST_CODE_NEW_ANIMAL_ACTIVITY);
         });
 
         mAdapter.setOnItemClickListener(item -> {
-            Log.i(TAG, "name = ".concat(item.getName()));
             Intent intent = new Intent(getActivity(), MyAnimalsDetailActivity.class);
             intent.putExtra("animal",item);
             startActivityForResult(intent, REQUEST_CODE_DETAIL_ANIMAL_ACTIVITY);
@@ -102,6 +96,9 @@ public class MyAnimalsFragment extends BaseFragment implements MyAnimalsViewImpl
         swipeRefreshLayout.setOnRefreshListener(() -> {
             presenter.loadData();
         });
+
+
+
     }
 
 
@@ -136,4 +133,29 @@ public class MyAnimalsFragment extends BaseFragment implements MyAnimalsViewImpl
     public void setRefreshingOnFinishLoadingData(){
         swipeRefreshLayout.setRefreshing(false);
     }
+
+    public void loadMyAnimals(int page) {
+        presenter.getMyAnimals(page);
+    }
+
+    @Override
+    public void fetchDataOnRecyclerListView(List<Animal> animals){
+        mAdapter = new MyAnimalsRecyclerAdapter(getContext(),animals);
+        mRecyclerView.addItemDecoration(new DividerItemDecotation(getContext()));
+        mRecyclerView.setAdapter(mAdapter);
+        mRecyclerView.setItemAnimator(new DefaultItemAnimator());
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+    }
+
+    @Override
+    public void setOnLoadNotFoundData(){
+        setTextViewNotFoundDataVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void setTextViewNotFoundDataVisibility(int visibility){
+        textViewNotFoundAnimals.setVisibility(visibility);
+    }
+
+
 }

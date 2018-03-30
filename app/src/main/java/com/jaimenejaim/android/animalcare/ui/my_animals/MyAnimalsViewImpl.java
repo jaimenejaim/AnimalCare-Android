@@ -13,9 +13,14 @@ public interface MyAnimalsViewImpl extends ViewImpl {
     int REQUEST_CODE_NEW_ANIMAL_ACTIVITY = 909;
     int REQUEST_CODE_DETAIL_ANIMAL_ACTIVITY = 910;
 
+
     void configRecyclerView(List<Animal> animals);
     void onFoundData();
     void onNotFoundData();
     void setRefreshingOnStartLoadingData();
     void setRefreshingOnFinishLoadingData();
+    void loadMyAnimals(int page);
+    void fetchDataOnRecyclerListView(List<Animal> animals);
+    void setOnLoadNotFoundData();
+    void setTextViewNotFoundDataVisibility(int visibility);
 }

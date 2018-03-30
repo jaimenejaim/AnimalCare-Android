@@ -71,6 +71,7 @@
     <string name="title_activity_vaccination_card">VaccinationCardActivity</string>
     <string name="title_activity_animals_data_details">AnimalsDataDetailsActivity</string>
     <string name="fragment_my_animals_not_found_animals_list">Nenhum animal encontrado</string>
+    <string name="my_animal_not_found_data">Nenhum registro encontrado.</string>
 
 
 </resources>

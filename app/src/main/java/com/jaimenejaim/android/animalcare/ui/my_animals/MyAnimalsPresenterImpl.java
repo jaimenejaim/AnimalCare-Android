@@ -7,4 +7,7 @@ import com.jaimenejaim.android.animalcare.ui.PresenterImpl;
  */
 
 public interface MyAnimalsPresenterImpl extends PresenterImpl {
+    void getMyAnimals(int page);
+    void onRefresh();
+    void onLoadMore(int page);
 }

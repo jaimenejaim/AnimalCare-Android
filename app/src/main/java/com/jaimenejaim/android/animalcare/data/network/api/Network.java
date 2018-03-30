@@ -26,7 +26,7 @@ public class Network {
     private static final String BASE_URL = BuildConfig.URL;
     private static final String LOGIN = BASE_URL.concat("/auth/login");
     private static final String LOGOUT = BASE_URL.concat("/auth/logout");
-    private static final String MY_ANIMALS = BASE_URL.concat("/client/animals");
+    private static final String MY_ANIMALS = BASE_URL.concat("/client/animals?embed=image");
     private static final String PROFILE = BASE_URL.concat("/auth/user");
 
     public Network(Context context){

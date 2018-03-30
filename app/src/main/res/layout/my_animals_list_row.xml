@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
+
         <io.rmiri.skeleton.SkeletonGroup
             android:id="@+id/skeletonGroup"
             android:layout_width="match_parent"
@@ -99,5 +100,6 @@
 
                 </RelativeLayout>
         </io.rmiri.skeleton.SkeletonGroup>
+
 
 </LinearLayout>

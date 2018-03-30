@@ -65,6 +65,8 @@ public class User implements Parcelable {
     public User(){
         this.animals = new ArrayList<>();
     }
+
+    @Ignore //ignore this attribute when load Room ORM
     public User(long id, String name, String username, boolean active, Date createdAt, Date updatedAt) {
         this.id = id;
         this.name = name;
@@ -74,6 +76,7 @@ public class User implements Parcelable {
         this.updatedAt = updatedAt;
         this.animals = new ArrayList<>();
     }
+
     public User(long id, String name, String username, boolean active, byte[] profilePicture, Date createdAt, Date updatedAt) {
         this.id = id;
         this.name = name;

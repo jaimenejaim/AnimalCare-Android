@@ -2,16 +2,13 @@ package com.jaimenejaim.android.animalcare.ui.my_animals;
 
 import android.content.Context;
 import android.util.Log;
-
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.jaimenejaim.android.animalcare.data.network.api.Network;
 import com.jaimenejaim.android.animalcare.data.persistence.entity.Animal;
 import com.jaimenejaim.android.animalcare.data.pref.Session;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
 
@@ -38,6 +35,7 @@ public class MyAnimalsPresenter implements MyAnimalsPresenterImpl {
     public Context getContext() {
         return view.getContext();
     }
+
 
 //    @Override
     public void loadData(){
@@ -66,6 +64,8 @@ public class MyAnimalsPresenter implements MyAnimalsPresenterImpl {
                         Animal animal = new Animal();
                         animal.setBreedId(data.get(i).getAsJsonObject().get("id").getAsLong());
                         animal.setName(data.get(i).getAsJsonObject().get("name").getAsString());
+                        animal.setPhoto(data.get(i).getAsJsonObject().get("image").getAsJsonObject()
+                        .get("data").getAsJsonObject().get("link").getAsString());
 
                         animals.add(animal);
                     }
@@ -95,4 +95,24 @@ public class MyAnimalsPresenter implements MyAnimalsPresenterImpl {
             }
         });
     }
+
+
+    @Override
+    public void getMyAnimals(int page) {
+
+    }
+
+    @Override
+    public void onRefresh() {
+        getMyAnimals(1);
+    }
+
+    @Override
+    public void onLoadMore(int page){
+        getMyAnimals(page);
+    }
+
+
+
+
 }

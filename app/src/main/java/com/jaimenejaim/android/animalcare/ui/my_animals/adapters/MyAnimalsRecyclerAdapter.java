@@ -1,5 +1,6 @@
 package com.jaimenejaim.android.animalcare.ui.my_animals.adapters;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -8,9 +9,9 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.jaimenejaim.android.animalcare.R;
 import com.jaimenejaim.android.animalcare.data.persistence.entity.Animal;
-import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -24,36 +25,52 @@ public class MyAnimalsRecyclerAdapter extends RecyclerView.Adapter<MyAnimalsRecy
 
     private OnItemClickListener listener;
     private List<Animal> animals;
+    private Context context;
 
 
-    public void setOnItemClickListener(OnItemClickListener onItemClickListener){
+    public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
         this.listener = onItemClickListener;
     }
 
 
-
-    public MyAnimalsRecyclerAdapter(List<Animal> animals){
+    public MyAnimalsRecyclerAdapter(Context context, List<Animal> animals) {
         this.animals = animals;
+        this.context = context;
     }
 
 
     @NonNull
-    @Override public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    @Override
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-        return new ViewHolder(LayoutInflater
-                .from(parent.getContext())
+        return new ViewHolder(LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.my_animals_list_row, parent, false));
     }
 
-    @Override public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.bind(animals.get(position));
+    @Override
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+
+
+        Glide.with(context).load(animals.get(position).getPhoto()).into(holder._photo);
+
+        holder._name.setText(animals.get(position).getName());
+
+        holder.itemView.setOnClickListener(v -> {
+            if(listener !=null) listener.onItemClick(animals.get(position));
+        });
+
+
+
+        if(animals.size() > 0){
+            holder._skeletonGroup.setShowSkeleton(false);
+            holder._skeletonGroup.finishAnimation();
+        }
     }
 
     @Override
     public int getItemCount() {
         return animals.size();
     }
-
 
 
     class ViewHolder extends RecyclerView.ViewHolder {
@@ -63,32 +80,14 @@ public class MyAnimalsRecyclerAdapter extends RecyclerView.Adapter<MyAnimalsRecy
         TextView _breed;
         SkeletonGroup _skeletonGroup;
 
-        public ViewHolder(View itemView) {
-            super(itemView);
-            _photo = itemView.findViewById(R.id.img);
-            _name =  itemView.findViewById(R.id.textViewName);
-            _breed = itemView.findViewById(R.id.textViewBreed);
-            _skeletonGroup = itemView.findViewById(R.id.skeletonGroup);
+        ViewHolder(View view) {
+            super(view);
+            _photo = view.findViewById(R.id.img);
+            _name = view.findViewById(R.id.textViewName);
+            _breed = view.findViewById(R.id.textViewBreed);
+            _skeletonGroup = view.findViewById(R.id.skeletonGroup);
         }
 
-        public void bind(final Animal item) {
-
-            if(_name != null){
-                Picasso.get().load("http://res.cloudinary.com/drfcfazt5/image/upload/v1521046642/placeholder_dog_tehfax.jpg").into(_photo);
-                _name.setText(item.getName());
-                _breed.setText(item.getBreed().getDescription());
-
-                itemView.setOnClickListener(v -> {
-                    if(listener !=null) listener.onItemClick(item);
-                });
-            }
-
-            if(animals.size() > 0){
-                 _skeletonGroup.setShowSkeleton(false);
-                _skeletonGroup.finishAnimation();
-            }
-
-        }
     }
 
     public interface OnItemClickListener {
