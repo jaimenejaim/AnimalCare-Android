@@ -21,8 +21,6 @@ import okhttp3.OkHttpClient;
 
 public class Network {
 
-    private static final String TAG = Network.class.getSimpleName();
-
     private static final String BASE_URL = BuildConfig.URL;
     private static final String LOGIN = BASE_URL.concat("/auth/login");
     private static final String LOGOUT = BASE_URL.concat("/auth/logout");
@@ -35,6 +33,11 @@ public class Network {
         OkHttpClient okHttpClient = new OkHttpClient().newBuilder()
                 .addNetworkInterceptor(new AuthInterceptor(context))
                 .build();
+        AndroidNetworking.initialize(context, okHttpClient);
+    }
+
+    public Network(Context context, boolean logIn){
+        OkHttpClient okHttpClient = new OkHttpClient().newBuilder().build();
         AndroidNetworking.initialize(context, okHttpClient);
     }
 

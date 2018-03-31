@@ -2,6 +2,7 @@ package com.jaimenejaim.android.animalcare.ui.my_animals;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -34,7 +35,7 @@ public class MyAnimalsFragment extends BaseFragment implements MyAnimalsViewImpl
     private FloatingActionButton buttonAdd;
     private TextView textViewNotFoundAnimals;
     private SwipeRefreshLayout swipeRefreshLayout;
-
+    private boolean hasMore;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -50,8 +51,6 @@ public class MyAnimalsFragment extends BaseFragment implements MyAnimalsViewImpl
         initComponents(view);
         configRecyclerView(new ArrayList<>());
         setListeners();
-
-
         loadMyAnimals();
 
         return view;
@@ -97,6 +96,29 @@ public class MyAnimalsFragment extends BaseFragment implements MyAnimalsViewImpl
             presenter.loadData();
         });
 
+        mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+
+//                if (hasMore && !(hasFooter())) {
+//                    LinearLayoutManager layoutManager = (LinearLayoutManager) recyclerView.getLayoutManager();
+//                    //position starts at 0
+//                    if (layoutManager.findLastCompletelyVisibleItemPosition() == layoutManager.getItemCount() - 2) {
+//
+//                        Handler handler = new Handler();
+//
+//                        final Runnable r = () -> {
+//                            recyclerView.getAdapter().notifyItemInserted(colors.size() - 1);
+//                        };
+//
+//                        handler.post(r);
+//                        asyncTask = new BackgroundTask();
+//                        asyncTask.execute((Object[]) null);
+//                    }
+//                }
+            }
+        });
 
 
     }
@@ -157,5 +179,8 @@ public class MyAnimalsFragment extends BaseFragment implements MyAnimalsViewImpl
         textViewNotFoundAnimals.setVisibility(visibility);
     }
 
+//    private boolean hasFooter() {
+//        return colors.get(colors.size() - 1) instanceof Footer;
+//    }
 
 }

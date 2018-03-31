@@ -26,7 +26,11 @@ public class MyAnimalsRecyclerAdapter extends RecyclerView.Adapter<MyAnimalsRecy
     private OnItemClickListener listener;
     private List<Animal> animals;
     private Context context;
+    private OnLoadMoreListener onLoadMoreListener;
 
+    public void setOnLoadMoreListener(OnLoadMoreListener mOnLoadMoreListener) {
+        this.onLoadMoreListener = mOnLoadMoreListener;
+    }
 
     public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
         this.listener = onItemClickListener;
@@ -92,6 +96,10 @@ public class MyAnimalsRecyclerAdapter extends RecyclerView.Adapter<MyAnimalsRecy
 
     public interface OnItemClickListener {
         void onItemClick(Animal item);
+    }
+
+    public interface OnLoadMoreListener {
+        void onLoadMore();
     }
 
 }

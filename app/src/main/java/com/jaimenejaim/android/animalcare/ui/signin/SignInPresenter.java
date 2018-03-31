@@ -27,7 +27,7 @@ public class SignInPresenter implements SignInPresenterImpl {
 
     public SignInPresenter(SignInViewImpl view){
         this.view = view;
-        network = new Network(getContext());
+        network = new Network(getContext(),true);
 
         //create breed if not exists
         new BreedSeed(getContext()).create();
@@ -50,31 +50,24 @@ public class SignInPresenter implements SignInPresenterImpl {
 
             @Override
             public void onNext(Auth auth) {
+                Log.i("SignInPresenter", "Saving token...");
                 Session.make(getContext(), auth);
+
+//                onComplete();
             }
 
             @Override
             public void onError(Throwable e) {
-
-
-//                if (e instanceof HttpException) {
-//                        Response<?> response = ((HttpException) e).response();
-//
-//                        switch (response.code()){
-//
-//                            case 401:
-//                                view.getEditTextPassword().setError(getContext().getString(R.string.log_in_error_message_invalid_credentials));
-//                                break;
-//
-//                            case 500:
-//
-//                                break;
-//                        }
-//                    }
+                e.printStackTrace();
             }
 
             @Override
             public void onComplete() {
+
+                Log.i("SignInPresenter", "onComplete");
+                view.finish();
+                view.openActivity(new HomeActivity());
+
 
                 network.getProfile(new Observer<JsonObject>() {
                     @Override
@@ -97,10 +90,6 @@ public class SignInPresenter implements SignInPresenterImpl {
 
                     }
                 });
-
-                view.finish();
-                view.openActivity(new HomeActivity());
-
             }
         });
     }

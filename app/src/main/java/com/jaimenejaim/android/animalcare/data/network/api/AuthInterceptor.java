@@ -40,6 +40,7 @@ public class AuthInterceptor implements Interceptor {
 
         Request request = chain.request();
 
+
         //Build new request
         Request.Builder builder = request.newBuilder();
         setAuthHeader(builder, accessToken);
